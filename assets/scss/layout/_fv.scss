@@ -51,17 +51,21 @@
   right: 5%;
   bottom: 5%;
   z-index: 1;
-  display: block;
   width: 100%;
   max-width: 300px;
+}
+
+.hero__news-link {
+  color: #fff;
+  display: block;
   padding: 24px 28px;
   text-align: left;
   background-color: $secondary;
-  color: #ffffff;
   border-radius: 24px;
   box-shadow: 0 25px 45px rgba(247, 181, 96, 0.35);
   transition: $transition;
   transform: translateY(0);
+  text-decoration: none;
 
   &:hover {
     opacity: 1;
@@ -72,6 +76,11 @@
   &:focus-visible {
     outline: 3px solid rgba(255, 255, 255, 0.65);
     outline-offset: 4px;
+    color: #ffffff;
+  }
+
+  &:visited {
+    color: #ffffff;
   }
 }
 

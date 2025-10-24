@@ -1,7 +1,7 @@
 @use "../global" as *;
 
 .header {
-  position: fixed;
+  position: absolute;
   inset: 0 0 auto 0;
   width: 100%;
   z-index: 100;

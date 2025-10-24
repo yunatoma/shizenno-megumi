@@ -1,0 +1,135 @@
+@use "../global" as *;
+
+#about {
+  padding: clamp(120px, 18vw, 200px) clamp(16px, 6vw, 80px)
+    clamp(140px, 20vw, 220px);
+}
+
+.about__wrapper {
+  position: relative;
+  margin: 0 auto;
+  width: min(1120px, 100%);
+  padding: clamp(100px, 16vw, 180px) clamp(32px, 8vw, 96px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+  text-align: center;
+  color: $text-color;
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.about__img {
+  position: absolute;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.about__img:nth-of-type(1) {
+  top: 0;
+  left: 0;
+  transform: translate(10%, 30%);
+}
+
+.about__img:nth-of-type(2) {
+  top: 0;
+  right: 0;
+  transform: translate(-30%, 60%);
+}
+
+.about__img:nth-of-type(3) {
+  bottom: 0;
+  left: 0;
+  transform: translate(75%, 10%);
+}
+
+.about__img:nth-of-type(4) {
+  bottom: 0;
+  right: 0;
+  transform: translate(-40%, 30%);
+}
+
+.about__heading img {
+  width: 314px;
+  height: 55px;
+  display: block;
+  object-fit: contain;
+}
+
+.about__text {
+  max-width: 680px;
+  font-size: 1.0625rem;
+  line-height: 2;
+  letter-spacing: 0.04em;
+
+  &:not(:last-of-type) {
+    margin-bottom: 30px;
+  }
+}
+
+@include mq(sp) {
+  #about {
+    padding: clamp(80px, 24vw, 120px) clamp(16px, 7vw, 40px);
+  }
+
+  .about__wrapper {
+    padding: clamp(90px, 24vw, 140px) clamp(16px, 6vw, 32px);
+    width: min(520px, 100%);
+    gap: 28px;
+
+    &::before {
+      inset: clamp(28px, 12vw, 60px);
+    }
+  }
+
+  .about__img {
+    width: min(170px, 44vw);
+  }
+
+  .about__img:nth-of-type(1),
+  .about__img:nth-of-type(2) {
+    top: clamp(12px, 10vw, 40px);
+  }
+
+  .about__img:nth-of-type(3),
+  .about__img:nth-of-type(4) {
+    bottom: clamp(12px, 10vw, 40px);
+  }
+
+  .about__text {
+    font-size: 1rem;
+    line-height: 1.9;
+    margin-inline: auto;
+  }
+}
+
+@include mq(xs) {
+  .about__wrapper {
+    padding: 100px 16px;
+
+    &::before {
+      inset: 40px;
+    }
+  }
+
+  .about__img {
+    width: min(140px, 48vw);
+  }
+
+  .about__heading img {
+    width: 260px;
+  }
+
+  .about__text {
+    font-size: 0.9375rem;
+  }
+}
