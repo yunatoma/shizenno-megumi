@@ -1,0 +1,34 @@
+@use "../global/var" as *;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Yu Gothic", "Helvetica Neue", "Helvetica", "Hiragino Sans",
+    "Hiragino Kaku Gothic ProN", "Arial", "Meiryo", sans-serif;
+  overflow-x: hidden;
+  background-color: #f9f9f9;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+picture {
+  vertical-align: middle;
+}
+
+a {
+  text-decoration: none;
+  transition: $transition;
+  &:hover {
+    opacity: 0.8;
+  }
+}

@@ -1,0 +1,171 @@
+@use "../global" as *;
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 100vh;
+  padding: 160px 24px 120px;
+  background-image: url("../img/FV@2x.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  text-align: center;
+  color: $primary;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.55);
+  }
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 1;
+  width: min(960px, 100%);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+.hero__logo {
+  width: min(260px, 60%);
+  margin-inline: auto;
+}
+
+.hero__title {
+  font-size: clamp(2rem, 3vw + 1rem, 3.5rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.hero__news {
+  position: relative;
+  z-index: 1;
+  display: block;
+  align-self: flex-end;
+  width: 100%;
+  max-width: 300px;
+  padding: 24px 28px;
+  text-align: left;
+  background-color: $secondary;
+  color: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 25px 45px rgba(247, 181, 96, 0.35);
+  transition: $transition;
+  transform: translateY(0);
+
+  &:hover {
+    opacity: 1;
+    filter: brightness(1.05);
+    transform: translateY(-4px);
+  }
+
+  &:focus-visible {
+    outline: 3px solid rgba(255, 255, 255, 0.65);
+    outline-offset: 4px;
+  }
+}
+
+.hero__news-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.hero__news-label {
+  font-family: $font-en;
+  font-size: 0.875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.hero__news-date {
+  font-size: 0.875rem;
+}
+
+.hero__news-text {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.hero__scroll {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  transform: translateX(-50%);
+  font-family: $font-en;
+  font-size: 0.8125rem;
+  letter-spacing: 0.32em;
+  color: #ffffff;
+  z-index: 1;
+  transition: $transition;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 86px;
+    background:
+      linear-gradient(currentColor, currentColor) 50% 0 / 2px calc(100% - 20px) no-repeat,
+      linear-gradient(
+          150deg,
+          transparent calc(50% - 1px),
+          currentColor calc(50% - 1px) calc(50% + 1px),
+          transparent calc(50% + 1px)
+        )
+        calc(50% + 2px) 100% / 22px 22px no-repeat;
+  }
+
+  img {
+    display: none;
+  }
+
+  &:hover {
+    opacity: 1;
+    transform: translate(-50%, -6px);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.6);
+    transform: translate(-50%, -6px);
+  }
+}
+
+.hero__scroll-text {
+  letter-spacing: inherit;
+}
+
+@include mq(sp) {
+  .hero {
+    padding-block: 120px 100px;
+  }
+
+  .hero__inner {
+    gap: 28px;
+  }
+
+  .hero__title {
+    letter-spacing: 0.06em;
+  }
+
+  .hero__news {
+    align-self: center;
+    max-width: 100%;
+  }
+
+  .hero__scroll {
+    bottom: 32px;
+  }
+}

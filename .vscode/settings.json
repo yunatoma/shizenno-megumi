@@ -1,0 +1,11 @@
+{
+  "liveServer.settings.port": 5501,
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "expanded",
+      "extensionName": ".css", //出力ファイルの拡張子
+      "savePath": "/assets/css" //出力先フォルダ（scssから見た相対パス）
+    }
+  ],
+  "liveSassCompile.settings.generateMap": false //.css.map（ソースマップ）ファイルを生成するかどうか。(開発中はtrue推奨)
+}

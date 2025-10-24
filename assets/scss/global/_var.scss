@@ -1,0 +1,16 @@
+// color
+$primary: #93c572;
+$secondary: #f7b560;
+$text-color: #555555;
+
+// font-family
+$font-en: "Archivo Narrow", sans-serif;
+
+$breakpoint: (
+  xs: "screen and (max-width: 374px)",
+  sp: "screen and (max-width: 767px)",
+  tab: "screen and (min-width: 768px)",
+  pc: "screen and (max-width: 992px)",
+);
+
+$transition: all 0.3s ease;
