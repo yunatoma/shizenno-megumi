@@ -25,7 +25,7 @@
 .hero__inner {
   position: relative;
   z-index: 1;
-  width: min(960px, 100%);
+  width: min(980px, 100%);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -114,17 +114,22 @@
   &::after {
     content: "";
     display: block;
-    width: 30px;
-    height: 86px;
-    background:
-      linear-gradient(currentColor, currentColor) 50% 0 / 2px calc(100% - 20px) no-repeat,
-      linear-gradient(
-          150deg,
-          transparent calc(50% - 1px),
-          currentColor calc(50% - 1px) calc(50% + 1px),
-          transparent calc(50% + 1px)
-        )
-        calc(50% + 2px) 100% / 22px 22px no-repeat;
+    width: 2px;
+    height: 70px;
+    margin: 0 auto;
+    background-color: currentColor;
+    position: relative;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    width: 10px;
+    height: 20px;
+    border-right: 2px solid currentColor;
+    transform: translateX(-50%) rotate(30deg);
   }
 
   img {

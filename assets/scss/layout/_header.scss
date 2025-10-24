@@ -1,8 +1,9 @@
 @use "../global" as *;
 
 .header {
-  position: sticky;
-  top: 0;
+  position: fixed;
+  inset: 0 0 auto 0;
+  width: 100%;
   z-index: 100;
   display: flex;
   justify-content: center;
@@ -11,7 +12,7 @@
 }
 
 .header__inner {
-  width: min(1120px, 100%);
+  width: min(1292px, 100%);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -28,7 +29,11 @@
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 
-  @supports not ((backdrop-filter: blur(18px))) {
+  @supports not (
+    (
+      backdrop-filter: blur(18px),
+    )
+  ) {
     background-color: rgba(255, 255, 255, 0.97);
   }
 }
@@ -59,7 +64,8 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  font-size: 0.9375rem;
+  font-size: 1rem;
+  font-weight: bold;
   color: $text-color;
   letter-spacing: 0.08em;
   text-decoration: none;
@@ -103,9 +109,14 @@
   justify-content: center;
   padding: 12px clamp(20px, 3vw, 32px);
   border-radius: 999px;
-  background: linear-gradient(135deg, lighten($secondary, 6%) 0%, $secondary 100%);
+  background: linear-gradient(
+    135deg,
+    lighten($secondary, 6%) 0%,
+    $secondary 100%
+  );
   color: #ffffff;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: bold;
   letter-spacing: 0.08em;
   box-shadow: 0 15px 35px rgba(247, 181, 96, 0.32);
   transition: $transition;
