@@ -1,0 +1,6 @@
+.title::after {
+  content: url("../../img/decoration.svg");
+  display: inline-block;
+  width: 400px;
+  height: 40px;
+}

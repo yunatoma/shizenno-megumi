@@ -3,6 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
     <link rel="stylesheet" href="assets/css/style.css" />
     <title>自然の恵み農園 | 自然の恵みを感じ、豊かな未来をつくる</title>
     <meta
@@ -117,58 +122,51 @@
       </section>
 
       <section id="intro">
-        <h2>活動紹介</h2>
-        <div>
-          <button>農園</button>
-          <button>牧場</button>
-          <button>オンライン販売</button>
+        <div class="intro__text-wrapper">
+          <h2 class="intro__title title">活動紹介</h2>
+          <div class="intro__btn-list">
+            <button class="intro__btn">農園</button>
+            <button class="intro__btn">牧場</button>
+            <button class="intro__btn">オンライン販売</button>
+          </div>
+
+          <div class="intro__content">
+            <p class="intro__text">
+              私たちは、「持続可能な農業」を掲げて、自然の恵みに感謝しながら、農作物を育てています。
+              無農薬で、体にも環境にも優しく、季節ごとに異なる品種を育て、提供しています。
+              ぜひ一度、農園にお越し頂き、自分の手で収穫した新鮮な野菜、果物をお召し上がりください。
+            </p>
+          </div>
         </div>
 
-        <div class="intro__content">
-          <p>
-            私たちは、「持続可能な農業」を掲げて、自然の恵みに感謝しながら、農作物を育てています。
-            無農薬で、体にも環境にも優しく、季節ごとに異なる品種を育て、提供しています。
-            ぜひ一度、農園にお越し頂き、自分の手で収穫した新鮮な野菜、果物をお召し上がりください。
-          </p>
-
+        <div class="autoplay intro__img-list">
           <div>
             <img src="assets/img/activity_farm1.png" alt="" />
+          </div>
+          <div>
             <img src="assets/img/activity_farm2.png" alt="" />
-            <img src="assets/img/activity_farm3.png" alt="" />
+          </div>
+          <div>
             <img src="assets/img/activity_farm3.png" alt="" />
           </div>
-        </div>
-        <div>
-          <p>
-            私たちの牧場は、自然と動物との共存を尊重し、持続可能な農業の原則に基づいて運営されています。
-            広々とした環境で、動物たちとのふれ合いを通じて、自然の恵みと動物の尊さを感じ、
-            心温まるひとときを過ごしていただけます。
-          </p>
-
           <div>
-            <img src="assets/img/activity_lanch1.png" alt="" />
-            <img src="assets/img/activity_lanch2.png" alt="" />
-            <img src="assets/img/activity_lanch3.png" alt="" />
-            <img src="assets/img/activity_lanch4.png" alt="" />
-          </div>
-        </div>
-        <div>
-          <p>
-            自然の恵み農園から直接お届けする、新鮮で美味しい農産物と
-            手作りのジャムやバターなどの加工品を提供しています。
-            自然の恩恵をご自宅でお楽しみいただけます。
-          </p>
-
-          <div>
-            <img src="assets/img/activity_online1.png" alt="" />
-            <img src="assets/img/activity_online2.png" alt="" />
-            <img src="assets/img/activity_online3.png" alt="" />
-            <img src="assets/img/activity_online4.png" alt="" />
+            <img src="assets/img/activity_farm4.png" alt="" />
           </div>
         </div>
       </section>
     </main>
-  </body>
 
-  <footer></footer>
+    <footer></footer>
+
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      type="text/javascript"
+      src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+    ></script>
+    <script src="assets/js/script.js"></script>
+  </body>
 </html>
