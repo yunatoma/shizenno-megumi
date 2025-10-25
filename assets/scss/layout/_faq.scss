@@ -1,0 +1,147 @@
+@use "../global" as *;
+#faq {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.faq__title::after {
+  width: 300px;
+  left: 50%;
+}
+
+.faq__accordion {
+  width: 60%;
+}
+
+.faq__accordion details {
+  position: relative;
+  &::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-color: $bg-color;
+    top: 22%;
+    left: -8px;
+    z-index: 100;
+  }
+
+  &::after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-color: $bg-color;
+    top: 22%;
+    right: -8px;
+  }
+}
+
+.faq__accordion details[open] {
+  &::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-color: $bg-color;
+    top: 40%;
+    left: -8px;
+    z-index: 100;
+  }
+
+  &::after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-color: $bg-color;
+    top: 40%;
+    right: -8px;
+  }
+}
+
+.faq__accordion summary {
+  font-weight: bold;
+  position: relative;
+  list-style: none;
+  padding: 1em 3em 1em 4em;
+  border: 2px solid #93c572;
+  border-radius: 30px;
+  margin-bottom: 20px;
+
+  cursor: pointer;
+
+  &::before {
+    content: "Q";
+    font-weight: normal;
+    font-size: 30px;
+    position: absolute;
+    color: $primary;
+    top: 10px;
+    left: 20px;
+  }
+
+  &::after {
+    position: absolute;
+    content: "－";
+    font-size: 40px;
+    color: $primary;
+    top: 15%;
+    right: 20px;
+  }
+}
+
+.faq__accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq__accordion details[open] {
+  border: 2px solid $primary;
+  border-radius: 30px;
+}
+
+.faq__accordion details[open] summary {
+  margin-bottom: 20px;
+  border: none;
+
+  &::after {
+    position: absolute;
+    content: "＋";
+    font-size: 40px;
+    color: $primary;
+    top: 15%;
+    right: 20px;
+  }
+}
+
+.faq__accordion details + details {
+  margin-top: 2em;
+}
+
+.faq__accordion .answer {
+  padding: 1em;
+  background: #eaeaea;
+}
+
+.faq__accordion .answer p {
+  margin: 0;
+}
+
+.faq__answer {
+  padding: 0em 3em 1em 4em;
+  position: relative;
+  &::before {
+    content: "A";
+    font-size: 30px;
+    position: absolute;
+    color: $secondary;
+    top: 10px;
+    left: 20px;
+  }
+
+  > p {
+    line-height: 2;
+  }
+}

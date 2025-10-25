@@ -1,7 +1,97 @@
-$(".autoplay").slick({
+// スライダー
+const slickSettings = {
   slidesToShow: 3,
   slidesToScroll: 1,
   autoplay: true,
   autoplaySpeed: 2000,
   arrows: false,
+  dots: false,
+  responsive: [
+    {
+      breakpoint: 900,
+      settings: {
+        slidesToShow: 2,
+      },
+    },
+    {
+      breakpoint: 560,
+      settings: {
+        slidesToShow: 1,
+      },
+    },
+  ],
+};
+
+//　スライダーの初期化
+const initSlider = ($slider) => {
+  if (!$slider.length) return;
+
+  if (typeof $slider.slick !== "function") return;
+
+  if ($slider.hasClass("slick-initialized")) {
+    $slider.slick("setPosition");
+    $slider.slick("slickPlay");
+  } else {
+    $slider.slick(slickSettings);
+  }
+};
+
+// タブ切り替え
+$(function () {
+  const $buttons = $(".intro__btn");
+  const $textBlocks = $("#intro .intro__content .content");
+  const $carousels = $("#intro .intro__img-list");
+
+  const showTab = (target) => {
+    if (!target) return;
+
+    $buttons.each(function () {
+      const $btn = $(this);
+      const isCurrent = $btn.data("tab") === target;
+      $btn.toggleClass("is-active", isCurrent);
+      $btn.attr("aria-selected", isCurrent);
+    });
+
+    $textBlocks.each(function () {
+      const $block = $(this);
+      const isTarget = $block.data("tab") === target;
+      $block.toggleClass("show", isTarget);
+      $block.prop("hidden", !isTarget);
+    });
+
+    $carousels.each(function () {
+      const $slider = $(this);
+      const isTarget = $slider.data("tab") === target;
+      $slider.toggleClass("show", isTarget);
+      $slider.prop("hidden", !isTarget);
+
+      if (isTarget) {
+        $slider.css("display", "");
+        initSlider($slider);
+      } else {
+        if ($slider.hasClass("slick-initialized")) {
+          $slider.slick("slickPause");
+        }
+        $slider.css("display", "none");
+      }
+    });
+  };
+
+  if ($buttons.length) {
+    const initialTarget =
+      $buttons.filter(".is-active").data("tab") || $buttons.first().data("tab");
+
+    showTab(initialTarget);
+
+    $buttons.on("click", function () {
+      const target = $(this).data("tab");
+      if (target) {
+        showTab(target);
+      }
+    });
+  } else {
+    $(".autoplay").each(function () {
+      initSlider($(this));
+    });
+  }
 });

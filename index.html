@@ -122,24 +122,57 @@
       </section>
 
       <section id="intro">
-        <div class="intro__text-wrapper">
+        <div class="intro__inner">
           <h2 class="intro__title title">活動紹介</h2>
-          <div class="intro__btn-list">
-            <button class="intro__btn">農園</button>
-            <button class="intro__btn">牧場</button>
-            <button class="intro__btn">オンライン販売</button>
+          <div class="intro__btn-list" role="tablist">
+            <button
+              class="intro__btn is-active"
+              type="button"
+              data-tab="farm"
+              role="tab"
+              aria-selected="true"
+            >
+              農園
+            </button>
+            <button
+              class="intro__btn"
+              type="button"
+              data-tab="ranch"
+              role="tab"
+              aria-selected="false"
+            >
+              牧場
+            </button>
+            <button
+              class="intro__btn"
+              type="button"
+              data-tab="online"
+              role="tab"
+              aria-selected="false"
+            >
+              オンライン販売
+            </button>
           </div>
-
           <div class="intro__content">
-            <p class="intro__text">
-              私たちは、「持続可能な農業」を掲げて、自然の恵みに感謝しながら、農作物を育てています。
-              無農薬で、体にも環境にも優しく、季節ごとに異なる品種を育て、提供しています。
-              ぜひ一度、農園にお越し頂き、自分の手で収穫した新鮮な野菜、果物をお召し上がりください。
-            </p>
+            <div class="content show" data-tab="farm">
+              <p class="intro__text">
+                私たちは、「持続可能な農業」を掲げて、自然の恵みに感謝しながら、農作物を育てています。無農薬で、体にも環境にも優しく、季節ごとに異なる品種を育て、提供しています。ぜひ一度、農園にお越し頂き、自分の手で収穫した新鮮な野菜・果物をお召し上がりください。
+              </p>
+            </div>
+            <div class="content" data-tab="ranch" hidden>
+              <p class="intro__text">
+                牧場では、広々とした自然の中で牛やヤギがのびのび暮らし、毎日ていねいに健康管理を行っています。見学では搾乳体験や餌やり体験もでき、命の鼓動を間近に感じられます。動物たちとの温かな時間を通して、命の尊さを一緒に学びましょう。
+              </p>
+            </div>
+            <div class="content" data-tab="online" hidden>
+              <p class="intro__text">
+                オンライン販売では、採れたての農産物や牧場で育まれた加工品を、そのまま全国へお届けしています。旬のセットや季節限定商品もご用意し、ご自宅に居ながら自然の恵みを味わえるよう工夫しています。ご家庭の食卓で、自然の豊かさをお楽しみください。
+              </p>
+            </div>
           </div>
         </div>
 
-        <div class="autoplay intro__img-list">
+        <div class="autoplay intro__img-list content show" data-tab="farm">
           <div>
             <img src="assets/img/activity_farm1.png" alt="" />
           </div>
@@ -152,6 +185,74 @@
           <div>
             <img src="assets/img/activity_farm4.png" alt="" />
           </div>
+        </div>
+
+        <div class="autoplay intro__img-list content" data-tab="ranch" hidden>
+          <div>
+            <img src="assets/img/activity_lanch1.png" alt="" />
+          </div>
+          <div>
+            <img src="assets/img/activity_lanch2.png" alt="" />
+          </div>
+          <div>
+            <img src="assets/img/activity_lanch3.png" alt="" />
+          </div>
+          <div>
+            <img src="assets/img/activity_lanch4.png" alt="" />
+          </div>
+        </div>
+
+        <div class="autoplay intro__img-list content" data-tab="online" hidden>
+          <div>
+            <img src="assets/img/activity_online1.png" alt="" />
+          </div>
+          <div>
+            <img src="assets/img/activity_online2.png" alt="" />
+          </div>
+          <div>
+            <img src="assets/img/activity_online3.png" alt="" />
+          </div>
+          <div>
+            <img src="assets/img/activity_online4.png" alt="" />
+          </div>
+        </div>
+      </section>
+
+      <section id="faq">
+        <h2 class="title faq__title">よくあるご質問</h2>
+
+        <div class="faq__accordion">
+          <details>
+            <summary>農園の野菜や果物は有機栽培ですか？</summary>
+            <div class="faq__answer">
+              <p>
+                はい、私たちの農園では有機栽培の原則に従って野菜と果物を栽培しています。
+                化学肥料や農薬を極力使用せず、土壌と作物の健康を第一に考えております。
+              </p>
+            </div>
+          </details>
+          <details>
+            <summary>農園での見学や体験ツアーは行っていますか？</summary>
+            <div class="faq__answer">
+              <p>Answer2</p>
+            </div>
+          </details>
+          <details>
+            <summary>
+              オンラインで注文した農産物はどのように配送されますか？
+            </summary>
+            <div class="faq__answer">
+              <p>Answer3</p>
+            </div>
+          </details>
+          <details>
+            <summary>
+              農園で提供される季節ごとの野菜や果物の品種は何ですか？
+            </summary>
+            <div class="faq__answer">
+              <p>Answer4</p>
+            </div>
+          </details>
         </div>
       </section>
     </main>
