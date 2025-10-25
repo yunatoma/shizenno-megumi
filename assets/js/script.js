@@ -1,4 +1,4 @@
-// スライダー
+// スライダーの設定
 const slickSettings = {
   slidesToShow: 3,
   slidesToScroll: 1,
@@ -22,7 +22,7 @@ const slickSettings = {
   ],
 };
 
-//　スライダーの初期化
+// スライダーの初期化
 const initSlider = ($slider) => {
   if (!$slider.length) return;
 
@@ -36,12 +36,20 @@ const initSlider = ($slider) => {
   }
 };
 
-// タブ切り替え
-$(function () {
+// 活動紹介セクションのタブを初期化
+const initIntroTabs = () => {
   const $buttons = $(".intro__btn");
   const $textBlocks = $("#intro .intro__content .content");
   const $carousels = $("#intro .intro__img-list");
 
+  if (!$buttons.length) {
+    $(".autoplay").each(function () {
+      initSlider($(this));
+    });
+    return;
+  }
+
+  // タブの切り替え
   const showTab = (target) => {
     if (!target) return;
 
@@ -77,21 +85,33 @@ $(function () {
     });
   };
 
-  if ($buttons.length) {
-    const initialTarget =
-      $buttons.filter(".is-active").data("tab") || $buttons.first().data("tab");
+  const initialTarget =
+    $buttons.filter(".is-active").data("tab") || $buttons.first().data("tab");
 
-    showTab(initialTarget);
+  showTab(initialTarget);
 
-    $buttons.on("click", function () {
-      const target = $(this).data("tab");
-      if (target) {
-        showTab(target);
-      }
-    });
-  } else {
-    $(".autoplay").each(function () {
-      initSlider($(this));
-    });
-  }
+  $buttons.on("click", function () {
+    const target = $(this).data("tab");
+    if (target) {
+      showTab(target);
+    }
+  });
+};
+
+// FAQアコーディオンを初期化
+const initFaqAccordion = () => {
+  const $faqDetails = $(".faq__accordion details");
+
+  if (!$faqDetails.length) return;
+
+  $faqDetails.on("toggle", function () {
+    if (this.open) {
+      $faqDetails.not(this).prop("open", false);
+    }
+  });
+};
+
+$(function () {
+  initIntroTabs();
+  initFaqAccordion();
 });
