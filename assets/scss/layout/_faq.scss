@@ -37,6 +37,22 @@
     top: 22%;
     right: -8px;
   }
+
+  &::details-content {
+    transition: height 0.4s, opacity 0.4s,
+      content-visibility 0.4s allow-discrete;
+    height: 0;
+    opacity: 0;
+    overflow: clip;
+    background-color: #eaeaea;
+    border-radius: 0 0 30px 30px;
+    content-visibility: hidden;
+  }
+}
+
+.faq__accordion details[open]::details-content {
+  opacity: 1;
+  content-visibility: visible;
 }
 
 .faq__accordion details[open] {
@@ -132,6 +148,7 @@
 .faq__answer {
   padding: 0.5em 3em 1em 4em;
   position: relative;
+  background-color: $bg-color;
   &::before {
     content: "A";
     font-size: 30px;
@@ -143,5 +160,22 @@
 
   > p {
     line-height: 2;
+  }
+}
+
+@supports (interpolate-size: allow-keywords) {
+  :root {
+    interpolate-size: allow-keywords;
+  }
+
+  .faq__accordion details[open]::details-content {
+    height: auto;
+  }
+}
+
+@supports not (interpolate-size: allow-keywords) {
+  .faq__accordion details[open]::details-content {
+    height: 220px;
+    overflow-y: auto;
   }
 }
