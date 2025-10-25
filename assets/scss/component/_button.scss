@@ -1,0 +1,14 @@
+@use "../global" as *;
+
+.btn-green {
+  color: $primary;
+  background-color: #fff;
+  border: 1px $primary solid;
+  border-radius: 40px;
+  padding: 20px;
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+  width: 300px;
+  font-size: 1.25rem;
+}
