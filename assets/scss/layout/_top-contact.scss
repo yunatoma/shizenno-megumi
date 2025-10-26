@@ -1,0 +1,55 @@
+@use "../global" as *;
+
+#top-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1200px;
+  margin-bottom: 120px;
+}
+
+.top-contact__wrapper {
+  width: 60%;
+
+  border-radius: 40px;
+  padding: 45px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  background-color: $secondary;
+}
+
+.top-contact__title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 35px;
+}
+
+.top-contact__caption {
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  font-size: 1.125rem;
+  margin-bottom: 36px;
+}
+
+.top-contact__btn {
+  min-width: clamp(220px, 24vw, 260px);
+  font-weight: bold;
+  font-size: 1.25rem;
+  border: 2px solid $primary;
+  margin-bottom: 36px;
+}
+
+.top-contact__phone,
+.top-contact__opening-hours {
+  font-size: clamp(1rem, 1.25rem, 1.125rem);
+  line-height: 1.6;
+  font-weight: bold;
+}
+
+.top-contact__phone span {
+  font-weight: bold;
+  font-size: 1.875rem;
+}
