@@ -6,6 +6,8 @@
   color: $text-color;
   position: relative;
   font-weight: bold;
+  display: inline-block;
+  z-index: 0;
   &::after {
     content: "";
     display: block;
@@ -13,7 +15,7 @@
     height: 40px;
     position: absolute;
     bottom: -20px;
-    left: 7%;
+    left: 50%;
     transform: translateX(-50%);
     background-image: url("../img/decoration.svg");
     background-size: contain;

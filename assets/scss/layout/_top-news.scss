@@ -12,7 +12,8 @@
   margin-bottom: 40px;
 
   &::after {
-    left: 24%;
+    width: clamp(100px, 125px, 400px);
+    left: 50%;
   }
 }
 

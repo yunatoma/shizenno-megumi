@@ -16,10 +16,12 @@ $intro-inline-padding: clamp(32px, 6vw, 72px);
 }
 
 .intro__title {
+  position: relative;
   z-index: 1;
 
   &::after {
-    left: 7%;
+    width: 150px;
+    left: 9%;
   }
 }
 

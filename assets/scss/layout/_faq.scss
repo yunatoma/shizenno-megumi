@@ -8,8 +8,7 @@
 }
 
 .faq__title::after {
-  width: 300px;
-  left: 50%;
+  width: clamp(200px, 250px, 400px);
 }
 
 .faq__accordion {
