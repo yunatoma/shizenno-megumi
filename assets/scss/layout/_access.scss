@@ -10,7 +10,7 @@
 
 .access__content {
   display: grid;
-  width: clamp(320px, 55vw, 960px);
+  width: min(1200px, 80%);
   grid-template-columns: minmax(250px, 26%) minmax(0, 1fr);
 }
 
