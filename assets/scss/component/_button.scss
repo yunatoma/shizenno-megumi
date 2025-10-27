@@ -17,3 +17,25 @@
     transform: translateY(-2px);
   }
 }
+
+.btn-orange {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: min(260px, 100%);
+  margin: 8px auto 0;
+  padding: 14px;
+  border-radius: 999px;
+  background: $secondary;
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: $transition;
+
+  &:hover,
+  &:focus-visible {
+    filter: brightness(1.05);
+    transform: translateY(-2px);
+  }
+}
