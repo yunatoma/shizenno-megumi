@@ -1,12 +1,15 @@
+// ========================================
 // ハンバーガーメニュー
+// ========================================
 const initHamburgerMenu = () => {
-  const $button = $(".menu-btn");
-  const $menu = $("#global-menu-sp");
+  const $button = $(".menu_btn");
+  const $menu = $(".header__menu--sp");
 
   if (!$button.length || !$menu.length) return;
 
   const setState = (isOpen) => {
-    $button.toggleClass("is-active", isOpen);
+    $button.toggleClass("active", isOpen);
+    $menu.toggleClass("active", isOpen);
     $button.attr("aria-expanded", String(isOpen));
     $menu.attr("aria-hidden", String(!isOpen));
   };
@@ -14,12 +17,25 @@ const initHamburgerMenu = () => {
   setState(false);
 
   $button.on("click", () => {
-    const willOpen = !$button.hasClass("is-active");
+    const willOpen = !$button.hasClass("active");
     setState(willOpen);
   });
 
   $menu.find("a").on("click", () => {
     setState(false);
+  });
+
+  // メニュー外をクリックしたら閉じる
+  $(document).on("click", (e) => {
+    if (
+      $button.hasClass("active") &&
+      !$button.is(e.target) &&
+      $button.has(e.target).length === 0 &&
+      !$menu.is(e.target) &&
+      $menu.has(e.target).length === 0
+    ) {
+      setState(false);
+    }
   });
 
   $(window).on("resize", () => {
