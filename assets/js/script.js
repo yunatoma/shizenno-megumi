@@ -12,6 +12,13 @@ const initHamburgerMenu = () => {
     $menu.toggleClass("active", isOpen);
     $button.attr("aria-expanded", String(isOpen));
     $menu.attr("aria-hidden", String(!isOpen));
+
+    // 背景固定の制御
+    if (isOpen) {
+      $("html").addClass("is-fixed"); // メニューを開く時：背景固定
+    } else {
+      $("html").removeClass("is-fixed"); // メニューを閉じる時：背景固定解除
+    }
   };
 
   setState(false);

@@ -19,6 +19,13 @@ body {
   color: $text-color;
 }
 
+// ハンバーガーメニュー展開時の背景固定
+html.is-fixed,
+html.is-fixed body {
+  height: 100%;
+  overflow: hidden;
+}
+
 img {
   width: 100%;
   height: auto;
