@@ -242,14 +242,16 @@
 
   .header__menu--sp {
     position: absolute;
-    display: block;
     width: 100%;
-    border-radius: 0px;
     top: 50px;
     background-color: #ffffff;
     border-radius: 0;
     z-index: 10;
-    opacity: 1;
+    padding: 20px;
+  }
+
+  .header__menu--sp.active {
+    display: block;
   }
 
   .header__link--contact {
