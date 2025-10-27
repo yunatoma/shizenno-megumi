@@ -91,25 +91,14 @@
   transform: translateY(-5px) rotate(-20deg);
 }
 
+// メニュー(スマホ)
 .header__menu--sp {
   display: none;
-  position: fixed;
-  top: 100px;
-  right: 20px;
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  z-index: 1000;
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .header__menu--sp.active {
   display: block;
   opacity: 1;
-  transform: translateY(0);
 }
 
 .header__inner > a {
@@ -237,10 +226,10 @@
   }
 
   .header__inner {
-    align-items: center;
-    gap: 16px;
-    border-radius: 24px;
-    padding: clamp(16px, 6vw, 22px);
+    border-radius: 0;
+    position: absolute;
+    top: 0;
+    height: 50px;
   }
 
   .menu-btn {
@@ -252,11 +241,15 @@
   }
 
   .header__menu--sp {
+    position: absolute;
     display: block;
-    width: min(320px, 100%);
-    padding: clamp(20px, 6vw, 28px);
-    border-radius: 24px;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    border-radius: 0px;
+    top: 50px;
+    background-color: #ffffff;
+    border-radius: 0;
+    z-index: 10;
+    opacity: 1;
   }
 
   .header__link--contact {
