@@ -1,3 +1,34 @@
+// ハンバーガーメニュー
+const initHamburgerMenu = () => {
+  const $button = $(".menu-btn");
+  const $menu = $("#global-menu-sp");
+
+  if (!$button.length || !$menu.length) return;
+
+  const setState = (isOpen) => {
+    $button.toggleClass("is-active", isOpen);
+    $button.attr("aria-expanded", String(isOpen));
+    $menu.attr("aria-hidden", String(!isOpen));
+  };
+
+  setState(false);
+
+  $button.on("click", () => {
+    const willOpen = !$button.hasClass("is-active");
+    setState(willOpen);
+  });
+
+  $menu.find("a").on("click", () => {
+    setState(false);
+  });
+
+  $(window).on("resize", () => {
+    if (window.matchMedia("(min-width: 768px)").matches) {
+      setState(false);
+    }
+  });
+};
+
 // スライダーの設定
 const slickSettings = {
   slidesToShow: 3,
@@ -112,6 +143,7 @@ const initFaqAccordion = () => {
 };
 
 $(function () {
+  initHamburgerMenu();
   initIntroTabs();
   initFaqAccordion();
 });
