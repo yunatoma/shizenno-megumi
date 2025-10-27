@@ -268,6 +268,7 @@
   }
 
   .header__link--sp {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -279,12 +280,28 @@
 
     &::after {
       content: "";
-      width: 12px;
-      height: 12px;
-      border-right: 2px solid $primary;
-      border-bottom: 2px solid $primary;
-      transform: rotate(-45deg);
-      margin-right: 4px;
+      position: relative;
+      display: inline-block;
+      width: 25px;
+      height: 2px;
+      margin-top: 3px;
+      border-radius: 9999px;
+      background-color: $primary;
+      transition: transform 0.2s ease;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 60%;
+      right: 0px;
+      width: 10px;
+      height: 2px;
+      margin-top: -1px;
+      border-radius: 9999px;
+      background-color: $primary;
+      transform: rotate(30deg);
+      transform-origin: calc(100% - 1px) 50%;
       transition: transform 0.2s ease;
     }
 
@@ -294,7 +311,11 @@
       outline: none;
 
       &::after {
-        transform: translateX(4px) rotate(-45deg);
+        transform: translateX(4px);
+      }
+
+      &::before {
+        transform: translateX(4px) rotate(30deg);
       }
     }
   }
