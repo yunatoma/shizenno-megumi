@@ -6,8 +6,8 @@
   }
 }
 .sp-only {
-  display: none;
+  display: none !important;
   @include mq(sp) {
-    display: block;
+    display: block !important;
   }
 }
