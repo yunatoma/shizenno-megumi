@@ -22,9 +22,15 @@
     width: 20px;
     height: 20px;
     position: absolute;
-    background-color: $bg-color;
-    top: 22%;
-    left: -8px;
+    background: linear-gradient(
+      to right,
+      $bg-color 0%,
+      $bg-color 50%,
+      #fff 50%,
+      #fff 100%
+    );
+    top: 30%;
+    left: -6px;
     z-index: 100;
   }
 
@@ -33,8 +39,14 @@
     width: 20px;
     height: 20px;
     position: absolute;
-    background-color: $bg-color;
-    top: 22%;
+    background: linear-gradient(
+      to left,
+      $bg-color 0%,
+      $bg-color 50%,
+      #fff 50%,
+      #fff 100%
+    );
+    top: 30%;
     right: -8px;
   }
 
@@ -61,7 +73,13 @@
     width: 20px;
     height: 20px;
     position: absolute;
-    background-color: $bg-color;
+    background: linear-gradient(
+      to right,
+      $bg-color 0%,
+      $bg-color 50%,
+      #fff 50%,
+      #fff 100%
+    );
     top: 40%;
     left: -8px;
     z-index: 100;
@@ -72,7 +90,13 @@
     width: 20px;
     height: 20px;
     position: absolute;
-    background-color: $bg-color;
+    background: linear-gradient(
+      to left,
+      $bg-color 0%,
+      $bg-color 50%,
+      #fff 50%,
+      #fff 100%
+    );
     top: 40%;
     right: -8px;
   }
@@ -85,7 +109,8 @@
   padding: 1em 3em 1em 4em;
   border: 2px solid #93c572;
   border-radius: 30px;
-  margin-bottom: 20px;
+  background-color: #fff;
+  font-size: 1rem;
 
   cursor: pointer;
 
@@ -101,7 +126,7 @@
 
   &::after {
     position: absolute;
-    content: "－";
+    content: "＋";
     font-size: 40px;
     color: $primary;
     top: 15%;
@@ -119,12 +144,12 @@
 }
 
 .faq__accordion details[open] summary {
-  margin-bottom: 20px;
   border: none;
+  border-radius: 30px 30px 0 0;
 
   &::after {
     position: absolute;
-    content: "＋";
+    content: "－";
     font-size: 40px;
     color: $primary;
     top: 15%;
@@ -148,7 +173,7 @@
 .faq__answer {
   padding: 0.5em 3em 1em 4em;
   position: relative;
-  background-color: $bg-color;
+  background-color: #fff;
   &::before {
     content: "A";
     font-size: 30px;
@@ -177,5 +202,72 @@
   .faq__accordion details[open]::details-content {
     height: 220px;
     overflow-y: auto;
+  }
+}
+
+@include mq(sp) {
+  #faq {
+    margin-top: 80px;
+  }
+
+  .faq__title {
+    font-size: 30px;
+    &::after {
+      width: 90%;
+    }
+  }
+
+  .faq__accordion summary {
+    padding: 30px 50px;
+    border: 3px solid #93c572;
+
+    &::before {
+      font-size: 25px;
+      top: 35%;
+    }
+
+    &::after {
+      font-size: 25px;
+      font-weight: bold;
+      top: 30%;
+    }
+  }
+
+  .faq__accordion details[open] summary {
+    &::after {
+      font-size: 25px;
+      font-weight: bold;
+      top: 30%;
+    }
+  }
+
+  .faq__answer {
+    padding: 30px 10px 20px 10px;
+
+    &::before {
+      font-size: 25px;
+      top: 0px;
+    }
+    p {
+      line-height: 1.5;
+    }
+  }
+
+  .faq__accordion details {
+    &::before {
+      top: 40%;
+    }
+    &::after {
+      top: 40%;
+    }
+  }
+
+  .faq__accordion details[open] {
+    border: 3px solid $primary;
+  }
+
+  .faq__accordion {
+    width: 100%;
+    padding: 0 16px;
   }
 }

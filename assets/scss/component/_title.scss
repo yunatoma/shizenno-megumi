@@ -11,10 +11,10 @@
   &::after {
     content: "";
     display: block;
-    width: 200px;
-    height: 40px;
+    width: 90%;
+    height: 80%;
     position: absolute;
-    bottom: -20px;
+    bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
     background-image: url("../img/decoration.svg");
