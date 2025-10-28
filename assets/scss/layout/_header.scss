@@ -217,6 +217,13 @@
 @include mq(sp) {
   .menu_btn {
     display: block;
+    width: 20px;
+    height: 8px;
+
+    &::after {
+      font-size: 7px;
+      top: 10px;
+    }
   }
   .header {
     padding: 20px 16px 0;
@@ -224,6 +231,7 @@
   }
 
   .header__inner {
+    align-items: center;
     border-radius: 0px;
     position: absolute;
     top: 0;
