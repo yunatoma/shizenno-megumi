@@ -2,6 +2,7 @@
 
 .btn-green {
   color: $primary;
+  font-family: $font-en;
   background-color: #fff;
   border: 1px $primary solid;
   border-radius: 40px;
@@ -15,6 +16,12 @@
   &:hover {
     filter: brightness(1.05);
     transform: translateY(-2px);
+  }
+
+  @include mq(sp) {
+    letter-spacing: 0.1em;
+    border: 2px $primary solid;
+    font-weight: lighter;
   }
 }
 

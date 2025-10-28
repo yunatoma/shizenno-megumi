@@ -2,7 +2,7 @@
 
 .pc-only {
   @include mq(sp) {
-    display: none;
+    display: none !important;
   }
 }
 .sp-only {
