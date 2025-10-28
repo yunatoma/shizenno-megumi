@@ -35,12 +35,11 @@ $intro-inline-padding: clamp(32px, 6vw, 72px);
   display: inline-flex;
   align-self: flex-start;
   gap: clamp(12px, 3vw, 18px);
-  padding: clamp(8px, 2vw, 10px);
   border-radius: 999px;
 }
 
 .intro__btn {
-  min-width: clamp(120px, 18vw, 180px);
+  width: 190px;
   padding: clamp(10px, 2.2vw, 14px) clamp(24px, 5vw, 32px);
   font-size: clamp(0.9375rem, 2vw, 1.0625rem);
   font-weight: 600;
@@ -49,14 +48,14 @@ $intro-inline-padding: clamp(32px, 6vw, 72px);
   border: 2px solid transparent;
   background-color: #ffffff;
   color: $text-color;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.18);
+  box-shadow: 0px 3px 6px #00000029;
   transition: $transition;
   cursor: pointer;
 
   &:hover,
   &:focus-visible {
     outline: none;
-    box-shadow: 0 12px 24px rgba(43, 108, 129, 0.2);
+    box-shadow: 0px 3px 6px #00000029;
     transform: translateY(-2px);
   }
 
@@ -108,7 +107,7 @@ $intro-inline-padding: clamp(32px, 6vw, 72px);
 }
 
 .intro__text {
-  font-size: clamp(1rem, 2.1vw, 1.125rem);
+  font-size: 1rem;
   line-height: 1.9;
   letter-spacing: 0.04em;
   margin: 0;
@@ -118,7 +117,6 @@ $intro-inline-padding: clamp(32px, 6vw, 72px);
 
 .intro__img-list {
   display: none;
-  padding: 0 $intro-inline-padding 0 0;
 }
 
 .intro__img-list > div {
@@ -154,26 +152,48 @@ $intro-inline-padding: clamp(32px, 6vw, 72px);
 
 @include mq(sp) {
   #intro {
-    margin: clamp(72px, 24vw, 110px) auto;
+    margin: 30px 0;
+    width: 100%;
+    border-radius: 0;
     padding: clamp(40px, 12vw, 60px) 0 clamp(48px, 12vw, 70px);
     gap: clamp(22px, 8vw, 32px);
   }
 
+  .intro__title::after {
+    width: 130px;
+    left: 21%;
+  }
+
   .intro__inner {
-    padding-inline: clamp(20px, 8vw, 36px);
+    padding: 0 16px;
+    gap: 35px;
   }
 
   .intro__btn-list {
-    flex-wrap: wrap;
-    justify-content: center;
+    width: 100%;
+    gap: 6px;
+    justify-content: space-between;
   }
 
   .intro__btn {
-    min-width: clamp(120px, 40vw, 180px);
+    font-size: 16px;
+    letter-spacing: 0px;
+    width: 40%;
+    padding: 6px 4px;
+    border-radius: 10px;
+    &:last-child {
+      font-size: 14px;
+    }
   }
 
   .intro__img-list {
-    padding-right: clamp(20px, 9vw, 40px);
+    height: 60%;
+  }
+
+  .autoplay {
+    .slick-slide {
+      width: 250px;
+    }
   }
 }
 
@@ -184,10 +204,6 @@ $intro-inline-padding: clamp(32px, 6vw, 72px);
 
   .intro__inner {
     padding-inline: clamp(16px, 10vw, 24px);
-  }
-
-  .intro__img-list {
-    padding-right: clamp(16px, 10vw, 24px);
   }
 
   .intro__btn {

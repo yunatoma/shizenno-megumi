@@ -60,17 +60,20 @@ const slickSettings = {
   autoplaySpeed: 2000,
   arrows: false,
   dots: false,
+  variableWidth: true,
   responsive: [
     {
       breakpoint: 900,
       settings: {
         slidesToShow: 2,
+        variableWidth: true,
       },
     },
     {
       breakpoint: 560,
       settings: {
         slidesToShow: 1,
+        variableWidth: true,
       },
     },
   ],
