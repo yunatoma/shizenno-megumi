@@ -35,10 +35,7 @@
 }
 
 .top-contact__btn {
-  min-width: clamp(220px, 24vw, 260px);
   font-weight: bold;
-  font-size: 1.25rem;
-  border: 2px solid $primary;
   margin-bottom: 36px;
 }
 
@@ -52,4 +49,40 @@
 .top-contact__phone span {
   font-weight: bold;
   font-size: 1.875rem;
+}
+
+@include mq(sp) {
+  #top-contact {
+    padding: 0 16px;
+    margin-bottom: 60px;
+  }
+
+  .top-contact__caption {
+    font-size: 18px;
+  }
+
+  .top-contact__wrapper {
+    width: 100%;
+    padding: 50px 20px;
+    border-radius: 50px;
+  }
+
+  .top-contact__title {
+    font-size: 30px;
+  }
+
+  .top-contact__btn {
+    width: 100%;
+  }
+
+  .top-contact__phone {
+    font-size: 20px;
+    span {
+      font-size: 30px;
+    }
+  }
+
+  .top-contact__opening-hours {
+    font-size: 20px;
+  }
 }
