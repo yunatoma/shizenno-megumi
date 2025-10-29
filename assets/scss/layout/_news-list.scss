@@ -41,7 +41,7 @@
   box-shadow: 0px 3px 6px #00000029;
 }
 
-.active {
+.news-list__category-item--active {
   color: #fff;
   background-color: $primary;
 }
@@ -128,6 +128,22 @@
 
   .news-list__container {
     margin-top: 40px;
+  }
+
+  .news-list__category-list {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .news-list__category-item {
+    flex-shrink: 0;
   }
 
   .news-list__item--sp {
