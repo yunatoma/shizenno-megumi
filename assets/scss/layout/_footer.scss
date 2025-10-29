@@ -52,6 +52,7 @@
 }
 
 .footer__links {
+  flex-wrap: wrap;
   justify-content: center;
   font-weight: 600;
   letter-spacing: 0.08em;
