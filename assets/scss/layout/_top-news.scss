@@ -7,7 +7,7 @@
 
 .top-news__left {
   width: 40%;
-  padding: 94px;
+  padding: 94px 30px;
 }
 
 .top-news__title {
@@ -52,6 +52,12 @@
   margin-top: 20px;
   font-weight: bold;
   font-size: 1.2rem;
+}
+
+@include mq(pc) {
+  .top-news__btn {
+    width: 250px;
+  }
 }
 
 @include mq(sp) {
