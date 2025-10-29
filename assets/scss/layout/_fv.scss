@@ -221,7 +221,7 @@
   .hero__inner {
     flex-direction: row;
     justify-content: space-between;
-    gap: 8px;
+    gap: 0px;
   }
 
   .hero__scroll {
@@ -229,7 +229,7 @@
   }
 
   .hero__logo {
-    width: 70px;
+    width: 25%;
   }
 
   .hero__title {
@@ -281,5 +281,12 @@
 
   .hero__scroll {
     bottom: 32px;
+  }
+}
+
+@include mq(xs) {
+  .hero__title {
+    font-size: 20px;
+    letter-spacing: 0;
   }
 }

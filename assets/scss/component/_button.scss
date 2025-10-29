@@ -42,7 +42,6 @@
 
   @include mq(sp) {
     letter-spacing: 0.1em;
-    border: 2px $primary solid;
   }
   &:hover,
   &:focus-visible {
