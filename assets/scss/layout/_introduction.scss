@@ -118,6 +118,7 @@ $intro-inline-padding: clamp(32px, 6vw, 72px);
 
 .intro__img-list {
   display: none;
+  padding-right: 30px;
 }
 
 .intro__img-list > div {
@@ -189,6 +190,7 @@ $intro-inline-padding: clamp(32px, 6vw, 72px);
 
   .intro__img-list {
     height: 60%;
+    padding-right: 16px;
   }
 
   .autoplay {
