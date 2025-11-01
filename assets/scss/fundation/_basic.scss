@@ -44,6 +44,24 @@ a {
   }
 }
 
+input,
+textarea,
+select,
+button {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;
