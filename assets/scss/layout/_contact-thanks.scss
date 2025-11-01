@@ -1,0 +1,70 @@
+@use "../global" as *;
+
+.contact-thanks__thaanks {
+  font-size: 20px;
+  margin-bottom: 26px;
+  font-weight: bold;
+}
+
+.contact-thanks__caption {
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 40px;
+  line-height: 1.5;
+}
+
+.contact-thanks__phone {
+  margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: bold;
+  color: $primary;
+  .contact-thanks__phone-number {
+    font-size: 30px;
+    color: $primary;
+  }
+}
+
+.contact-thanks__opening-hours {
+  color: $primary;
+  margin-bottom: 50px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+}
+
+.contact-thanks__submit {
+}
+
+.contact-thanks__submit-button {
+  letter-spacing: 0.1em;
+}
+
+@include mq(sp) {
+  .contact-thanks__thaanks {
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .contact-thanks__caption {
+    margin-bottom: 30px;
+  }
+
+  .contact-thanks__phone {
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: center;
+    .contact-thanks__phone-number {
+      font-size: 20px;
+    }
+  }
+
+  .contact-thanks__opening-hours {
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .contact-thanks__submit-button {
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
