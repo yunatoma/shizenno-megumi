@@ -1,6 +1,6 @@
 @use "../global" as *;
 
-.contact-thanks__thaanks {
+.contact-thanks__thanks {
   font-size: 20px;
   margin-bottom: 26px;
   font-weight: bold;
@@ -39,7 +39,7 @@
 }
 
 @include mq(sp) {
-  .contact-thanks__thaanks {
+  .contact-thanks__thanks {
     line-height: 1.5;
     text-align: center;
   }
