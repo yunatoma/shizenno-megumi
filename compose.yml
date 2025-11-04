@@ -13,7 +13,7 @@ services:
     volumes:
       - wp-data:/var/www/html
       - ./config/conf.d/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
-      - ./contents/shizenno-megumi:/var/www/html/wp-content/themes/shizenno-megumi
+      - ./:/var/www/html/wp-content/themes/shizenno-megumi
   db:
     platform: linux/x86_64
     image: mysql:5.7
