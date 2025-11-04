@@ -41,37 +41,39 @@
               <?php if (have_posts()) : ?>
                 <?php while (have_posts()) : the_post(); ?>
                   <li class="news-list__item">
-                    <?php if (has_post_thumbnail()) : ?>
-                      <img
-                        class="news-list__img"
-                        src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'medium'); ?>"
-                        alt="<?php the_title_attribute(); ?>"
-                      />
-                    <?php else : ?>
-                      <img
-                        class="news-list__img"
-                        src="<?php echo get_template_directory_uri(); ?>/assets/img/no-image.svg"
-                        alt=""
-                      />
-                    <?php endif; ?>
-                    <div class="news-list__text">
-                      <time class="news-list__time" datetime="<?php echo get_the_date('Y-m-d'); ?>">
-                        <?php echo get_the_date('Y.m.d'); ?>
-                      </time>
-                      <?php
-                      $terms = get_the_terms(get_the_ID(), 'news_category');
-                      if ($terms && !is_wp_error($terms)) :
-                        $term = array_shift($terms);
-                      ?>
-                        <div class="news-list__label"><?php echo esc_html($term->name); ?></div>
+                    <a href="<?php the_permalink(); ?>">
+                      <?php if (has_post_thumbnail()) : ?>
+                        <img
+                          class="news-list__img"
+                          src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'medium'); ?>"
+                          alt="<?php the_title_attribute(); ?>"
+                        />
+                      <?php else : ?>
+                        <img
+                          class="news-list__img"
+                          src="<?php echo get_template_directory_uri(); ?>/assets/img/no-image.svg"
+                          alt=""
+                        />
                       <?php endif; ?>
-                      <h2 class="news-list__title">
-                        <?php the_title(); ?>
-                      </h2>
-                      <p class="news-list__body">
-                        <?php echo wp_trim_words(get_the_excerpt(), 50, '...'); ?>
-                      </p>
-                    </div>
+                      <div class="news-list__text">
+                        <time class="news-list__time" datetime="<?php echo get_the_date('Y-m-d'); ?>">
+                          <?php echo get_the_date('Y.m.d'); ?>
+                        </time>
+                        <?php
+                        $terms = get_the_terms(get_the_ID(), 'news_category');
+                        if ($terms && !is_wp_error($terms)) :
+                          $term = array_shift($terms);
+                        ?>
+                          <div class="news-list__label"><?php echo esc_html($term->name); ?></div>
+                        <?php endif; ?>
+                        <h2 class="news-list__title">
+                          <?php the_title(); ?>
+                        </h2>
+                        <p class="news-list__body">
+                          <?php echo wp_trim_words(get_the_excerpt(), 50, '...'); ?>
+                        </p>
+                      </div>
+                    </a>
                   </li>
                 <?php endwhile; ?>
               <?php else : ?>
@@ -84,23 +86,25 @@
                 <?php rewind_posts(); // ループを最初から再開 ?>
                 <?php while (have_posts()) : the_post(); ?>
                   <li class="news-list__item--sp">
-                    <?php
-                    $terms = get_the_terms(get_the_ID(), 'news_category');
-                    if ($terms && !is_wp_error($terms)) :
-                      $term = array_shift($terms);
-                    ?>
-                      <div class="news-list__label news-list__label--sp">
-                        <?php echo esc_html($term->name); ?>
+                    <a href="<?php the_permalink(); ?>">
+                      <?php
+                      $terms = get_the_terms(get_the_ID(), 'news_category');
+                      if ($terms && !is_wp_error($terms)) :
+                        $term = array_shift($terms);
+                      ?>
+                        <div class="news-list__label news-list__label--sp">
+                          <?php echo esc_html($term->name); ?>
+                        </div>
+                      <?php endif; ?>
+                      <div class="news-list__text--sp">
+                        <time class="news-list__time--sp" datetime="<?php echo get_the_date('Y-m-d'); ?>">
+                          <?php echo get_the_date('Y.m.d'); ?>
+                        </time>
+                        <h2 class="news-list__title--sp">
+                          <?php the_title(); ?>
+                        </h2>
                       </div>
-                    <?php endif; ?>
-                    <div class="news-list__text--sp">
-                      <time class="news-list__time--sp" datetime="<?php echo get_the_date('Y-m-d'); ?>">
-                        <?php echo get_the_date('Y.m.d'); ?>
-                      </time>
-                      <h2 class="news-list__title--sp">
-                        <?php the_title(); ?>
-                      </h2>
-                    </div>
+                    </a>
                   </li>
                 <?php endwhile; ?>
               <?php else : ?>
