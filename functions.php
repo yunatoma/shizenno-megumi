@@ -30,6 +30,11 @@ function create_news_post_type() {
 }
 add_action('init', 'create_news_post_type');
 
+// お知らせ投稿画面でサムネイル設定を有効化
+add_action('after_setup_theme', function () {
+    add_theme_support('post-thumbnails', ['news']);
+});
+
 // カスタムタクソノミー「カテゴリ」を登録
 function create_news_taxonomy() {
     register_taxonomy(
