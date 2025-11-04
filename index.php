@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="assets/img/apple-touch-icon.svg" />
+    <link rel="icon" href="<?php echo get_template_directory_uri(); ?>/assets/img/apple-touch-icon.svg" />
     <link
       rel="stylesheet"
       type="text/css"
@@ -21,7 +21,7 @@
       href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/style.css" />
     <title>自然の恵み農園 | 自然の恵みを感じ、豊かな未来をつくる</title>
     <meta
       name="description"
@@ -32,7 +32,7 @@
     <header class="header">
       <div class="header__inner">
         <a href="#">
-          <img src="assets/img/logo.svg" alt="自然の恵み農園のロゴ" />
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.svg" alt="自然の恵み農園のロゴ" />
         </a>
 
         <div
@@ -131,7 +131,7 @@
       <section class="hero">
         <div class="hero__inner">
           <div class="hero__logo">
-            <img src="assets/img/LOGO2.svg" alt="自然の恵み農園のロゴ" />
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/LOGO2.svg" alt="自然の恵み農園のロゴ" />
           </div>
           <h1 class="hero__title">
             自然の恵みを感じ、<br class="sp-only" />豊かな未来を。
@@ -163,7 +163,7 @@
         <div class="about__wrapper">
           <div class="about__img">
             <img
-              src="assets/img/about1.png"
+              src="<?php echo get_template_directory_uri(); ?>/assets/img/about1.png"
               width="200"
               height="252"
               alt="山羊の写真"
@@ -171,7 +171,7 @@
           </div>
           <div class="about__img">
             <img
-              src="assets/img/about2.png"
+              src="<?php echo get_template_directory_uri(); ?>/assets/img/about2.png"
               width="181"
               height="217"
               alt="トマトの写真"
@@ -179,7 +179,7 @@
           </div>
           <div class="about__img">
             <img
-              src="assets/img/about3.png"
+              src="<?php echo get_template_directory_uri(); ?>/assets/img/about3.png"
               width="200"
               height="200"
               alt="農家さんの写真"
@@ -187,7 +187,7 @@
           </div>
           <div class="about__img">
             <img
-              src="assets/img/about4.png"
+              src="<?php echo get_template_directory_uri(); ?>/assets/img/about4.png"
               width="235"
               height="269"
               alt="牛の写真"
@@ -195,7 +195,7 @@
           </div>
 
           <h2 class="about__heading">
-            <img src="assets/img/logo.svg" alt="" />
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.svg" alt="" />
           </h2>
 
           <div>
@@ -283,46 +283,46 @@
 
         <div class="autoplay intro__img-list content show" data-tab="farm">
           <div>
-            <img src="assets/img/activity_farm1.png" alt="" />
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/activity_farm1.png" alt="" />
           </div>
           <div>
-            <img src="assets/img/activity_farm2.png" alt="" />
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/activity_farm2.png" alt="" />
           </div>
           <div>
-            <img src="assets/img/activity_farm3.png" alt="" />
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/activity_farm3.png" alt="" />
           </div>
           <div>
-            <img src="assets/img/activity_farm4.png" alt="" />
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/activity_farm4.png" alt="" />
           </div>
         </div>
 
         <div class="autoplay intro__img-list content" data-tab="ranch" hidden>
           <div>
-            <img src="assets/img/activity_lanch1.png" alt="" />
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/activity_lanch1.png" alt="" />
           </div>
           <div>
-            <img src="assets/img/activity_lanch2.png" alt="" />
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/activity_lanch2.png" alt="" />
           </div>
           <div>
-            <img src="assets/img/activity_lanch3.png" alt="" />
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/activity_lanch3.png" alt="" />
           </div>
           <div>
-            <img src="assets/img/activity_lanch4.png" alt="" />
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/activity_lanch4.png" alt="" />
           </div>
         </div>
 
         <div class="autoplay intro__img-list content" data-tab="online" hidden>
           <div>
-            <img src="assets/img/activity_online1.png" alt="" />
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/activity_online1.png" alt="" />
           </div>
           <div>
-            <img src="assets/img/activity_online2.png" alt="" />
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/activity_online2.png" alt="" />
           </div>
           <div>
-            <img src="assets/img/activity_online3.png" alt="" />
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/activity_online3.png" alt="" />
           </div>
           <div>
-            <img src="assets/img/activity_online4.png" alt="" />
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/activity_online4.png" alt="" />
           </div>
         </div>
       </section>
@@ -477,7 +477,7 @@
     <footer id="footer">
       <div class="footer__wrapper">
         <div class="footer__info">
-          <img src="assets/img/logo.svg" alt="" />
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.svg" alt="" />
           <address>
             <p class="footer__address">
               〒123-4567<br />
@@ -527,6 +527,6 @@
       type="text/javascript"
       src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
     ></script>
-    <script src="assets/js/script.js"></script>
+    <script src="<?php echo get_template_directory_uri(); ?>/assets/js/script.js"></script>
   </body>
 </html>
