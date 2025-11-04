@@ -27,6 +27,7 @@
       name="description"
       content="自然の恵み農園は、農園運営・牧場運営・オンライン販売を通じ、自然の恵みを感じて、豊かな未来を想像して頂ける取り組みを行なっています。"
     />
+    <?php wp_head(); ?>
   </head>
   <body>
     <header class="header">
