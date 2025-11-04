@@ -19,7 +19,11 @@
             <time class="news-detail__time" datetime="<?php echo get_the_date('Y-m-d'); ?>">
               <?php echo get_the_date('Y.m.d'); ?>
             </time>
-            <?php if ($terms && !is_wp_error($terms)) : ?>
+            <?php
+            $terms = get_the_terms(get_the_ID(), 'news_category');
+            if ($terms && !is_wp_error($terms)) :
+              $term = array_shift($terms);
+            ?>
               <div class="news-detail__label"><?php echo esc_html($term->name); ?></div>
             <?php endif; ?>
 
