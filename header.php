@@ -32,7 +32,7 @@
   <body>
     <header class="header">
       <div class="header__inner">
-        <a href="#">
+        <a href="/">
           <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.svg" alt="自然の恵み農園のロゴ" />
         </a>
 
@@ -48,13 +48,13 @@
 
         <nav class="header__menu">
           <ul>
-            <li><a href="#about" class="header__link">私たちについて</a></li>
-            <li><a href="#intro" class="header__link">活動紹介</a></li>
-            <li><a href="#faq" class="header__link">よくあるご質問</a></li>
-            <li><a href="#top-news" class="header__link">お知らせ</a></li>
-            <li><a href="#access" class="header__link">アクセス</a></li>
+            <li><a href="<?php echo home_url('/#about'); ?>" class="header__link">私たちについて</a></li>
+            <li><a href="<?php echo home_url('/#intro'); ?>" class="header__link">活動紹介</a></li>
+            <li><a href="<?php echo home_url('/#faq'); ?>" class="header__link">よくあるご質問</a></li>
+            <li><a href="<?php echo home_url('/#top-news'); ?>" class="header__link">お知らせ</a></li>
+            <li><a href="<?php echo home_url('/#access'); ?>" class="header__link">アクセス</a></li>
             <li>
-              <a href="#top-contact" class="header__link--contact">
+              <a href="<?php echo home_url('/#top-contact'); ?>" class="header__link--contact">
                 お問い合わせ
               </a>
             </li>
@@ -65,7 +65,7 @@
       <nav id="global-menu-sp" class="header__menu--sp" aria-hidden="true">
         <ul class="header__menu-list--sp">
           <li class="header__item--sp">
-            <a class="header__link--sp" href="#">
+            <a class="header__link--sp" href="<?php echo home_url('/'); ?>">
               <div>
                 <span class="header__link--sp-main">トップ</span>
                 <span class="header__link--sp-sub">top</span>
@@ -73,7 +73,7 @@
             </a>
           </li>
           <li class="header__item--sp">
-            <a class="header__link--sp" href="#about">
+            <a class="header__link--sp" href="<?php echo home_url('/#about'); ?>">
               <div>
                 <span class="header__link--sp-main">私たちについて</span>
                 <span class="header__link--sp-sub">about</span>
@@ -81,7 +81,7 @@
             </a>
           </li>
           <li class="header__item--sp">
-            <a class="header__link--sp" href="#faq">
+            <a class="header__link--sp" href="<?php echo home_url('/#faq'); ?>">
               <div>
                 <span class="header__link--sp-main">よくあるご質問</span>
                 <span class="header__link--sp-sub">faq</span>
@@ -89,7 +89,7 @@
             </a>
           </li>
           <li class="header__item--sp">
-            <a class="header__link--sp" href="#intro">
+            <a class="header__link--sp" href="<?php echo home_url('/#intro'); ?>">
               <div>
                 <span class="header__link--sp-main">活動紹介</span>
                 <span class="header__link--sp-sub">works</span>
@@ -97,7 +97,7 @@
             </a>
           </li>
           <li class="header__item--sp">
-            <a class="header__link--sp" href="#top-news">
+            <a class="header__link--sp" href="<?php echo home_url('/#top-news'); ?>">
               <div>
                 <span class="header__link--sp-main">お知らせ</span>
                 <span class="header__link--sp-sub">news</span>
@@ -105,7 +105,7 @@
             </a>
           </li>
           <li class="header__item--sp">
-            <a class="header__link--sp" href="#access">
+            <a class="header__link--sp" href="<?php echo home_url('/#access'); ?>">
               <div>
                 <span class="header__link--sp-main">アクセス</span>
                 <span class="header__link--sp-sub">access</span>
@@ -121,7 +121,7 @@
             <span>【受付時間】<br /></span>
             10:00 ~ 18:00（土日祝を除く）
           </p>
-          <a href="#top-contact" class="btn-orange header__link-contact--sp">
+          <a href="<?php echo home_url('/#top-contact'); ?>" class="btn-orange header__link-contact--sp">
             お問い合わせ
           </a>
         </div>

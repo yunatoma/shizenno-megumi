@@ -1,7 +1,9 @@
     <footer id="footer">
       <div class="footer__wrapper">
         <div class="footer__info">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.svg" alt="" />
+          <a href="<?php echo home_url('/'); ?>">
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.svg" alt="" />
+          </a>
           <address>
             <p class="footer__address">
               〒123-4567<br />
@@ -13,12 +15,12 @@
         </div>
         <div class="footer__right">
           <ul class="footer__links">
-            <li class="footer__item"><a href="#">ホーム</a></li>
-            <li class="footer__item"><a href="#about">私たちについて</a></li>
-            <li class="footer__item"><a href="#intro">活動紹介</a></li>
-            <li class="footer__item"><a href="#faq">よくあるご質問</a></li>
-            <li class="footer__item"><a href="#access">アクセス</a></li>
-            <li class="footer__item"><a href="#top-news">お知らせ</a></li>
+            <li class="footer__item"><a href="<?php echo home_url('/'); ?>">ホーム</a></li>
+            <li class="footer__item"><a href="<?php echo home_url('/#about'); ?>">私たちについて</a></li>
+            <li class="footer__item"><a href="<?php echo home_url('/#intro'); ?>">活動紹介</a></li>
+            <li class="footer__item"><a href="<?php echo home_url('/#faq'); ?>">よくあるご質問</a></li>
+            <li class="footer__item"><a href="<?php echo home_url('/#access'); ?>">アクセス</a></li>
+            <li class="footer__item"><a href="<?php echo home_url('/#top-news'); ?>">お知らせ</a></li>
           </ul>
           <ul class="footer__sns-list">
             <li class="footer__sns-item">
