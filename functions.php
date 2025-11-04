@@ -50,44 +50,89 @@ function create_news_taxonomy() {
 }
 add_action('init', 'create_news_taxonomy');
 
-// 開発環境用：自動リロード機能
-// 本番環境では必ずこの関数をコメントアウトしてください
+// TODO: 開発環境用：PHPファイルの変更時刻を返すエンドポイント
+function livereload_check_php_files() {
+    $theme_dir = get_template_directory();
+    $php_files = [
+        $theme_dir . '/functions.php',
+        $theme_dir . '/header.php',
+        $theme_dir . '/footer.php',
+        $theme_dir . '/front-page.php',
+        $theme_dir . '/archive-news.php',
+    ];
+
+    $latest_mtime = 0;
+    foreach ($php_files as $file) {
+        if (file_exists($file)) {
+            $mtime = filemtime($file);
+            if ($mtime > $latest_mtime) {
+                $latest_mtime = $mtime;
+            }
+        }
+    }
+
+    wp_send_json(['mtime' => $latest_mtime]);
+}
+add_action('wp_ajax_nopriv_livereload_check', 'livereload_check_php_files');
+add_action('wp_ajax_livereload_check', 'livereload_check_php_files');
+
+// TODO: 開発環境用：自動リロード機能
+// TODO: 本番環境では必ずこの関数をコメントアウトしてください
 function add_livereload_script() {
     ?>
     <script>
         (function() {
-            let lastCssModified = null;
-            const cssUrl = '<?php echo get_template_directory_uri(); ?>/assets/css/style.css';
-            console.log('[LiveReload] Watching CSS:', cssUrl);
+            let lastCheck = {};
+            const files = [
+                '<?php echo get_template_directory_uri(); ?>/assets/css/style.css',
+                '<?php echo get_template_directory_uri(); ?>/assets/js/script.js',
+            ];
+            console.log('[LiveReload] Watching files:', files);
 
-            function checkForCssChanges() {
-                fetch(cssUrl + '?t=' + Date.now(), {
-                    method: 'HEAD'
-                })
-                .then(response => {
-                    const lastModified = response.headers.get('Last-Modified');
-                    console.log('[LiveReload] Current Last-Modified:', lastModified);
+            function checkForChanges() {
+                // CSS/JSファイルの変更チェック
+                files.forEach(fileUrl => {
+                    fetch(fileUrl + '?t=' + Date.now(), {
+                        method: 'HEAD'
+                    })
+                    .then(response => {
+                        const lastModified = response.headers.get('Last-Modified');
+                        const fileName = fileUrl.split('/').pop();
 
-                    if (lastCssModified === null) {
-                        // 初回
-                        lastCssModified = lastModified;
-                        console.log('[LiveReload] Initial Last-Modified set:', lastCssModified);
-                    } else if (lastModified !== lastCssModified) {
-                        // CSSが更新された！ページをリロード
-                        console.log('[LiveReload] CSS updated! Reloading page...');
-                        console.log('[LiveReload] Old:', lastCssModified);
-                        console.log('[LiveReload] New:', lastModified);
+                        if (!lastCheck[fileUrl]) {
+                            lastCheck[fileUrl] = lastModified;
+                            console.log('[LiveReload] Initial check:', fileName, lastModified);
+                        } else if (lastModified !== lastCheck[fileUrl]) {
+                            console.log('[LiveReload] File updated:', fileName);
+                            console.log('[LiveReload] Reloading page...');
+                            window.location.reload();
+                        }
+                    })
+                    .catch(err => {
+                        console.error('[LiveReload] Error checking:', fileUrl, err);
+                    });
+                });
+
+                // PHPファイルの変更チェック（専用エンドポイント使用）
+                fetch('<?php echo admin_url('admin-ajax.php'); ?>?action=livereload_check&t=' + Date.now())
+                .then(response => response.json())
+                .then(data => {
+                    if (!lastCheck['php']) {
+                        lastCheck['php'] = data.mtime;
+                        console.log('[LiveReload] Initial PHP check:', data.mtime);
+                    } else if (data.mtime !== lastCheck['php']) {
+                        console.log('[LiveReload] PHP file updated! Reloading...');
                         window.location.reload();
                     }
                 })
                 .catch(err => {
-                    console.error('[LiveReload] Error:', err);
+                    console.error('[LiveReload] Error checking PHP:', err);
                 });
             }
 
-            // 1秒ごとにチェック（SASS→CSSコンパイル後すぐに反映）
-            setInterval(checkForCssChanges, 1000);
-            checkForCssChanges(); // 初回実行
+            // 2秒ごとにチェック（負荷軽減）
+            setInterval(checkForChanges, 2000);
+            checkForChanges(); // 初回実行
         })();
     </script>
     <?php
