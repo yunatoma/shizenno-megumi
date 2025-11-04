@@ -4,14 +4,17 @@
     <main>
       <div class="news-list__container">
         <section id="news-list">
+          <?php
+          $current_term = get_queried_object();
+          ?>
           <div class="bread_crumbs">
-            <span>ホーム</span> > <span>お知らせ一覧</span>
+            <span>ホーム</span> > <span>お知らせ一覧</span> > <span><?php echo esc_html($current_term->name); ?></span>
           </div>
-          <h1 class="title">お知らせ一覧</h1>
+          <h1 class="title"><?php echo esc_html($current_term->name); ?></h1>
           <ul class="news-list__category-list">
             <li>
               <a href="<?php echo get_post_type_archive_link('news'); ?>">
-                <button class="news-list__category-item news-list__category-item--active">
+                <button class="news-list__category-item">
                   すべて
                 </button>
               </a>
@@ -23,10 +26,12 @@
             ));
             if ($categories && !is_wp_error($categories)) :
               foreach ($categories as $category) :
+                $is_current = ($category->term_id === $current_term->term_id);
+                $active_class = $is_current ? ' news-list__category-item--active' : '';
             ?>
               <li>
                 <a href="<?php echo get_term_link($category); ?>">
-                  <button class="news-list__category-item">
+                  <button class="news-list__category-item<?php echo $active_class; ?>">
                     <?php echo esc_html($category->name); ?>
                   </button>
                 </a>
