@@ -49,3 +49,47 @@ function create_news_taxonomy() {
     );
 }
 add_action('init', 'create_news_taxonomy');
+
+// 開発環境用：自動リロード機能
+// 本番環境では必ずこの関数をコメントアウトしてください
+function add_livereload_script() {
+    ?>
+    <script>
+        (function() {
+            let lastCssModified = null;
+            const cssUrl = '<?php echo get_template_directory_uri(); ?>/assets/css/style.css';
+            console.log('[LiveReload] Watching CSS:', cssUrl);
+
+            function checkForCssChanges() {
+                fetch(cssUrl + '?t=' + Date.now(), {
+                    method: 'HEAD'
+                })
+                .then(response => {
+                    const lastModified = response.headers.get('Last-Modified');
+                    console.log('[LiveReload] Current Last-Modified:', lastModified);
+
+                    if (lastCssModified === null) {
+                        // 初回
+                        lastCssModified = lastModified;
+                        console.log('[LiveReload] Initial Last-Modified set:', lastCssModified);
+                    } else if (lastModified !== lastCssModified) {
+                        // CSSが更新された！ページをリロード
+                        console.log('[LiveReload] CSS updated! Reloading page...');
+                        console.log('[LiveReload] Old:', lastCssModified);
+                        console.log('[LiveReload] New:', lastModified);
+                        window.location.reload();
+                    }
+                })
+                .catch(err => {
+                    console.error('[LiveReload] Error:', err);
+                });
+            }
+
+            // 1秒ごとにチェック（SASS→CSSコンパイル後すぐに反映）
+            setInterval(checkForCssChanges, 1000);
+            checkForCssChanges(); // 初回実行
+        })();
+    </script>
+    <?php
+}
+add_action('wp_footer', 'add_livereload_script');
