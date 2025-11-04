@@ -1,0 +1,15 @@
+{
+  "name": "shizenno-megumi",
+  "version": "1.0.0",
+  "description": "自然の恵み農園 WordPressテーマ",
+  "scripts": {
+    "watch": "browser-sync start --proxy 'localhost:8080' --files '**/*.php, **/*.css, **/*.js' --no-notify --no-open",
+    "watch:scss": "sass --watch assets/scss:assets/css",
+    "dev": "concurrently \"npm run watch:scss\" \"npm run watch\""
+  },
+  "devDependencies": {
+    "browser-sync": "^2.29.3",
+    "concurrently": "^8.2.2",
+    "sass": "^1.69.5"
+  }
+}
