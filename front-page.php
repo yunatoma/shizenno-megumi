@@ -255,7 +255,7 @@
             オンライン販売セールのお知らせなど、自然の恵み農園の最新情報をお届けします。
           </p>
 
-          <a class="pc-only btn-green top-news__btn" href="#">View More</a>
+          <a class="pc-only btn-green top-news__btn" href="<?php echo esc_url(home_url('/news/')); ?>">View More</a>
         </div>
 
         <article class="top-news__right">
@@ -290,7 +290,7 @@
           </ul>
         </article>
 
-        <a class="sp-only btn-green" href="#">View More</a>
+        <a class="sp-only btn-green" href="<?php echo esc_url(home_url('/news/')); ?>">View More</a>
       </section>
 
       <section id="access">
