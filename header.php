@@ -54,7 +54,7 @@
             <li><a href="<?php echo home_url('/#top-news'); ?>" class="header__link">お知らせ</a></li>
             <li><a href="<?php echo home_url('/#access'); ?>" class="header__link">アクセス</a></li>
             <li>
-              <a href="<?php echo home_url('/#top-contact'); ?>" class="header__link--contact">
+              <a href="<?php echo home_url('/contact/'); ?>" class="header__link--contact">
                 お問い合わせ
               </a>
             </li>
@@ -121,7 +121,7 @@
             <span>【受付時間】<br /></span>
             10:00 ~ 18:00（土日祝を除く）
           </p>
-          <a href="<?php echo home_url('/#top-contact'); ?>" class="btn-orange header__link-contact--sp">
+          <a href="<?php echo home_url('/contact/'); ?>" class="btn-orange header__link-contact--sp">
             お問い合わせ
           </a>
         </div>

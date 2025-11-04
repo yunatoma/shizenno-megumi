@@ -137,7 +137,7 @@
               />見学、その他ご質問<br />
               お気軽にお問い合わせください。
             </p>
-            <a class="btn-green top-contact__btn" href="#">お問い合わせ</a>
+            <a class="btn-green top-contact__btn" href="<?php echo home_url('/contact/'); ?>">お問い合わせ</a>
             <p class="top-contact__phone">
               問い合わせ電話：<br class="sp-only" /><span>123-4567-8910</span>
             </p>
