@@ -11,17 +11,42 @@
           </h1>
         </div>
         <article class="hero__news">
-          <a href="#news" class="hero__news-link">
-            <div class="hero__news-header">
-              <span class="hero__news-label">News</span>
-              <time class="hero__news-date" datetime="2024-01-01"
-                >YYYY.MM.DD</time
-              >
-            </div>
-            <p class="hero__news-text">
-              タイトルが入ります。タイトルが入ります。タイトルが入ります。タイトルが入ります。
-            </p>
-          </a>
+          <?php
+          $latest_news = new WP_Query(array(
+            'post_type' => 'news',
+            'posts_per_page' => 1,
+            'orderby' => 'date',
+            'order' => 'DESC'
+          ));
+          if ($latest_news->have_posts()) :
+            while ($latest_news->have_posts()) : $latest_news->the_post();
+          ?>
+            <a href="<?php the_permalink(); ?>" class="hero__news-link">
+              <div class="hero__news-header">
+                <span class="hero__news-label">News</span>
+                <time class="hero__news-date" datetime="<?php echo get_the_date('Y-m-d'); ?>"
+                  ><?php echo get_the_date('Y.m.d'); ?></time
+                >
+              </div>
+              <p class="hero__news-text">
+                <?php the_title(); ?>
+              </p>
+            </a>
+          <?php
+            endwhile;
+            wp_reset_postdata();
+          else :
+          ?>
+            <a href="<?php echo get_post_type_archive_link('news'); ?>" class="hero__news-link">
+              <div class="hero__news-header">
+                <span class="hero__news-label">News</span>
+                <time class="hero__news-date" datetime="">-</time>
+              </div>
+              <p class="hero__news-text">
+                お知らせはまだありません。
+              </p>
+            </a>
+          <?php endif; ?>
         </article>
         <a
           href="#about"
