@@ -5,7 +5,11 @@
       <div class="contact__container">
         <section id="contact">
           <div class="bread_crumbs">
-            <span>ホーム</span> > <span>お問い合わせ</span>
+            <?php
+            if (function_exists('bcn_display')) {
+              bcn_display();
+            }
+            ?>
           </div>
           <h1 class="title contact__title">お問い合わせ</h1>
           <p class="contact__caption">

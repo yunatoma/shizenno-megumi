@@ -5,15 +5,11 @@
       <div class="news-detail__container">
         <section id="news-detail">
           <div class="bread_crumbs">
-            ホーム > お知らせ一覧 >
             <?php
-            $terms = get_the_terms(get_the_ID(), 'news_category');
-            if ($terms && !is_wp_error($terms)) :
-              $term = array_shift($terms);
-              echo esc_html($term->name);
-            endif;
-            ?> >
-            <?php the_title(); ?>
+            if (function_exists('bcn_display')) {
+              bcn_display();
+            }
+            ?>
           </div>
 
           <div>

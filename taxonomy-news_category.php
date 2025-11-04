@@ -8,7 +8,11 @@
           $current_term = get_queried_object();
           ?>
           <div class="bread_crumbs">
-            <span>ホーム</span> > <span>お知らせ一覧</span> > <span><?php echo esc_html($current_term->name); ?></span>
+            <?php
+            if (function_exists('bcn_display')) {
+              bcn_display();
+            }
+            ?>
           </div>
           <h1 class="title"><?php echo esc_html($current_term->name); ?></h1>
           <ul class="news-list__category-list">

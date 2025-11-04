@@ -5,7 +5,11 @@
       <div class="news-list__container">
         <section id="news-list">
           <div class="bread_crumbs">
-            <span>ホーム</span> > <span>お知らせ一覧</span>
+            <?php
+            if (function_exists('bcn_display')) {
+              bcn_display();
+            }
+            ?>
           </div>
           <h1 class="title">お知らせ一覧</h1>
           <ul class="news-list__category-list">
