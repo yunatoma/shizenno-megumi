@@ -260,33 +260,40 @@
 
         <article class="top-news__right">
           <ul class="top-news__list">
-            <li class="top-news__item">
-              <time class="top-news__time" datetime="YYYY-MM-DD"
-                >YYYY.MM.DD</time
-              >
-              <div class="top-news__category">カテゴリ</div>
-              <h3 class="top-news__article-title">
-                タイトルが入ります。タイトルが入ります。タイトルが入ります。
-              </h3>
-            </li>
-            <li class="top-news__item">
-              <time class="top-news__time" datetime="YYYY-MM-DD"
-                >YYYY.MM.DD</time
-              >
-              <div class="top-news__category">カテゴリ</div>
-              <h3 class="top-news__article-title">
-                タイトルが入ります。タイトルが入ります。タイトルが入ります。
-              </h3>
-            </li>
-            <li class="top-news__item">
-              <time class="top-news__time" datetime="YYYY-MM-DD"
-                >YYYY.MM.DD</time
-              >
-              <div class="top-news__category">カテゴリ</div>
-              <h3 class="top-news__article-title">
-                タイトルが入ります。タイトルが入ります。タイトルが入ります。
-              </h3>
-            </li>
+            <?php
+            $news_query = new WP_Query(array(
+              'post_type' => 'news',
+              'posts_per_page' => 3,
+              'orderby' => 'date',
+              'order' => 'DESC'
+            ));
+            if ($news_query->have_posts()) :
+              while ($news_query->have_posts()) : $news_query->the_post();
+            ?>
+              <li class="top-news__item">
+                <a href="<?php the_permalink(); ?>">
+                  <time class="top-news__time" datetime="<?php echo get_the_date('Y-m-d'); ?>"
+                    ><?php echo get_the_date('Y.m.d'); ?></time
+                  >
+                  <?php
+                  $terms = get_the_terms(get_the_ID(), 'news_category');
+                  if ($terms && !is_wp_error($terms)) :
+                    $term = array_shift($terms);
+                  ?>
+                    <div class="top-news__category"><?php echo esc_html($term->name); ?></div>
+                  <?php endif; ?>
+                  <h3 class="top-news__article-title">
+                    <?php the_title(); ?>
+                  </h3>
+                </a>
+              </li>
+            <?php
+              endwhile;
+              wp_reset_postdata();
+            else :
+            ?>
+              <li class="top-news__item">お知らせはまだありません。</li>
+            <?php endif; ?>
           </ul>
         </article>
 
