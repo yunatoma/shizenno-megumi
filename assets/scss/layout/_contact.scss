@@ -10,12 +10,8 @@
   margin: 0 auto;
 }
 
-.contact__caption {
-  margin: 20px;
-}
-
 .contact__title {
-  margin: 50px 0 45px 0;
+  margin-bottom: 45px;
 }
 
 .contact__form-wrapper {
@@ -27,8 +23,18 @@
   align-items: center;
   padding: clamp(0px, 10%, 100px);
   margin: 50px 0 160px 0;
+  div {
+    width: 100%;
+  }
+  textarea {
+    padding: 10px;
+  }
 }
 
+.wpcf7 {
+  display: flex;
+  justify-content: center;
+}
 .contact__form {
   width: 80%;
 }
@@ -42,6 +48,7 @@
   font-weight: bold;
   display: flex;
   align-items: center;
+  align-items: flex-end;
   gap: 10px;
 }
 
@@ -66,20 +73,24 @@
   border-radius: 5px;
   margin-top: 16px;
   padding: 10px;
+  height: 50px;
+  width: 70%;
 }
 
-.contact__select-wrapper::after {
-  content: "";
-  position: absolute;
-  top: 60%;
-  left: 75%;
-  width: 12px;
-  height: 12px;
-  border-right: 2px solid $primary;
-  border-bottom: 2px solid $primary;
-  transform: translateY(-50%) rotate(45deg);
-  pointer-events: none;
-  transition: transform 0.3s ease;
+.contact__select-wrapper {
+  span::after {
+    content: "";
+    position: absolute;
+    top: 45%;
+    right: 30px;
+    width: 12px;
+    height: 12px;
+    border-right: 2px solid $primary;
+    border-bottom: 2px solid $primary;
+    transform: translateY(-50%) rotate(45deg);
+    pointer-events: none;
+    transition: transform 0.3s ease;
+  }
 }
 
 .contact__select-wrapper:focus-within::after {
@@ -109,7 +120,7 @@
 }
 
 .contact__submit-button {
-  width: 80%;
+  width: 200px;
   font-weight: bold;
   height: 50px;
   padding: 0;
@@ -126,7 +137,7 @@
     padding: 0;
   }
   .contact__title {
-    margin: 40px 0 10px 0;
+    margin-bottom: 10px;
   }
   #contact {
     width: 100%;
@@ -144,6 +155,9 @@
   .contact__required {
     font-weight: normal;
   }
+  .contact__input {
+    margin: 0;
+  }
 
   .contact__container {
   }
@@ -153,6 +167,9 @@
     padding: 30px 20px;
     margin-top: 40px;
     margin-bottom: 60px;
+  }
+  .contact__field-wrapper {
+    margin-bottom: 18px;
   }
 
   .contact__submit-button {
