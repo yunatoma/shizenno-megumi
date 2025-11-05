@@ -42,8 +42,76 @@
                 />
               <?php endif; ?>
 
+              <?php
+              // コンテンツからH2とH3の見出しを抽出して目次を生成
+              $content = get_the_content();
+              $content = apply_filters('the_content', $content);
+
+              // DOMDocumentを使用してHTMLを解析
+              $dom = new DOMDocument();
+              libxml_use_internal_errors(true);
+              // PHP 8.2対応: UTF-8のHTMLとして読み込む
+              $dom->loadHTML('<?xml encoding="UTF-8">' . $content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+              libxml_clear_errors();
+
+              $headings = array();
+              $xpath = new DOMXPath($dom);
+              $h_tags = $xpath->query('//h2 | //h3');
+
+              $index = 1;
+              foreach ($h_tags as $heading) {
+                $heading_id = 'heading-' . $index;
+                $headings[] = array(
+                  'id' => $heading_id,
+                  'text' => $heading->textContent,
+                  'level' => $heading->nodeName
+                );
+                $index++;
+              }
+              ?>
+
+              <?php if (!empty($headings)) : ?>
+                <div class="news-detail__toc">
+                  <h2 class="news-detail__toc-title">目次</h2>
+                  <ul class="news-detail__toc-list">
+                    <?php foreach ($headings as $heading) : ?>
+                      <li class="news-detail__toc-item news-detail__toc-item--<?php echo esc_attr($heading['level']); ?>">
+                        <a href="#<?php echo esc_attr($heading['id']); ?>">
+                          <?php echo esc_html($heading['text']); ?>
+                        </a>
+                      </li>
+                    <?php endforeach; ?>
+                  </ul>
+                </div>
+              <?php endif; ?>
+
               <div class="news-detail__content">
-                <?php the_content(); ?>
+                <?php
+                // コンテンツにIDを追加
+                if (!empty($headings)) {
+                  $index = 1;
+                  $content_with_ids = preg_replace_callback(
+                    '/<(h[23])([^>]*)>(.*?)<\/\1>/i',
+                    function($matches) use (&$index) {
+                      $tag = $matches[1];
+                      $attrs = $matches[2];
+                      $text = $matches[3];
+                      $id = 'heading-' . $index;
+                      $index++;
+
+                      // 既存のクラスを保持しつつIDを追加
+                      if (strpos($attrs, 'id=') === false) {
+                        return '<' . $tag . $attrs . ' id="' . $id . '">' . $text . '</' . $tag . '>';
+                      }
+                      return $matches[0];
+                    },
+                    $content
+                  );
+                  echo $content_with_ids;
+                } else {
+                  echo $content;
+                }
+                ?>
               </div>
 
               <a class="btn-green news-detail__btn" href="<?php echo get_post_type_archive_link('news'); ?>">一覧に戻る</a>
