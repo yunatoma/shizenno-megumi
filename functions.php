@@ -138,3 +138,14 @@ function add_livereload_script() {
     <?php
 }
 add_action('wp_footer', 'add_livereload_script');
+
+// Contact Form 7のカスタマイズ
+// CF7のデフォルトCSSを無効化（テーマのCSSを使用するため）
+add_filter('wpcf7_load_css', '__return_false');
+
+// CF7のフォームにカスタムクラスを追加
+add_filter('wpcf7_form_class_attr', 'custom_wpcf7_form_class');
+function custom_wpcf7_form_class($class) {
+    $class .= ' contact__form';
+    return $class;
+}

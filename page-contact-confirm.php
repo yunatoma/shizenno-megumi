@@ -1,4 +1,3 @@
-
 <?php get_header(); ?>
 
     <main>
@@ -12,16 +11,12 @@
             ?>
           </div>
           <h1 class="title contact__title">お問い合わせ</h1>
-          <p class="contact__caption">
-            お仕事のご相談、農園体験、牧場の見学、<br
-              class="sp-only"
-            />その他ご質問など、お気軽にお問い合わせください。
-          </p>
+
           <div class="contact__form-wrapper">
-            <?php echo do_shortcode('[contact-form-7 id="cb71377" title="お問い合わせ"]'); ?>
+            <?php echo do_shortcode('[contact-form-7 id="d2b5c73" title="お問い合わせ確認"]'); ?>
           </div>
         </section>
       </div>
     </main>
-
+    
 <?php get_footer(); ?>
