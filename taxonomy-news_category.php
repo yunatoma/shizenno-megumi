@@ -121,14 +121,7 @@
               <?php endif; ?>
             </ul>
 
-            <nav class="pagination" aria-label="ページネーション">
-              <ul>
-                <li><a href="#" aria-label="前のページ">&lt;</a></li>
-                <li><a href="#" class="active">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#" aria-label="次のページ">&gt;</a></li>
-              </ul>
-            </nav>
+            <?php get_template_part('template-parts/pagination'); ?>
           </div>
         </section>
 
