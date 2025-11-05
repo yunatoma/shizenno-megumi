@@ -96,7 +96,7 @@
 
 .hero__news-label {
   font-family: $font-en;
-  font-size: 0.875rem;
+  font-size: 20px;
   letter-spacing: 0.16em;
   font-weight: bold;
 }
@@ -104,10 +104,13 @@
 .hero__news-date {
   font-family: $font-en;
   font-size: 12px;
+  letter-spacing: 0.2em;
 }
 
 .hero__news-text {
-  font-size: 0.9375rem;
+  font-size: 16px;
+  font-weight: bold;
+    letter-spacing: 0.1em;
   line-height: 1.6;
   overflow: hidden;
   text-overflow: ellipsis;
