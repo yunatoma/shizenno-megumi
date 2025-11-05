@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
     <main>
-      <div class="contact__container">
+      <div class="contact__container ">
         <section id="contact">
           <div class="bread_crumbs">
             <?php
@@ -12,7 +12,7 @@
           </div>
           <h1 class="title contact__title">お問い合わせ</h1>
 
-          <div class="contact__form-wrapper">
+          <div class="contact__form-wrapper contact-confirm__form-wrapper">
             <?php echo do_shortcode('[contact-form-7 id="d2b5c73" title="お問い合わせ確認"]'); ?>
           </div>
         </section>

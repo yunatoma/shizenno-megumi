@@ -1,4 +1,22 @@
+@use "../global" as *;
 .contact-confirm {
   margin-top: 16px;
   line-height: 1.5;
+}
+
+.contact-confirm__form-wrapper {
+  margin-top: 0;
+}
+
+.contact-confirm__label {
+  margin-bottom: 10px;
+}
+
+@include mq(sp) {
+  .contact-confirm__field-wrapper {
+    margin-bottom: 24px;
+  }
+  .contact-confirm__form-wrapper {
+    margin-top: 30px;
+  }
 }
