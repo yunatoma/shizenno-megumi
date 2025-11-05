@@ -94,7 +94,13 @@
               <?php if (have_posts()) : ?>
                 <?php rewind_posts(); // ループを最初から再開 ?>
                 <?php while (have_posts()) : the_post(); ?>
-                  <li class="news-list__item--sp">
+                  <?php
+                  // アイキャッチ画像のURLを取得
+                  $thumbnail_url = has_post_thumbnail()
+                    ? get_the_post_thumbnail_url(get_the_ID(), 'medium')
+                    : get_template_directory_uri() . '/assets/img/no-image.svg';
+                  ?>
+                  <li class="news-list__item--sp" style="background-image: url('<?php echo esc_url($thumbnail_url); ?>');">
                     <a href="<?php the_permalink(); ?>">
                       <?php
                       $terms = get_the_terms(get_the_ID(), 'news_category');
