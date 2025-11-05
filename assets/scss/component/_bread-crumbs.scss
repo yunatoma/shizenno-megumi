@@ -1,0 +1,16 @@
+@use "../global" as *;
+
+.bread_crumbs {
+  margin: 30px 0 82px;
+  font-size: 14px;
+  color: #000;
+
+  // リンクにも明示的に色を指定
+  a {
+    color: #000;
+  }
+
+  @include mq(sp) {
+    margin: 20px 0 40px;
+  }
+}

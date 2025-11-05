@@ -79,7 +79,7 @@
                           <?php the_title(); ?>
                         </h2>
                         <p class="news-list__body">
-                          <?php echo wp_trim_words(get_the_excerpt(), 50, '...'); ?>
+                          <?php echo get_the_excerpt(); ?>
                         </p>
                       </div>
                     </a>

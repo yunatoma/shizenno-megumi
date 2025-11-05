@@ -17,8 +17,8 @@ $pagination_links = paginate_links(array(
   'current'   => max(1, $paged),
   'total'     => $max_pages,
   'type'      => 'array',
-  'prev_text' => '&lt;',
-  'next_text' => '&gt;',
+  'prev_text' => '<i class="fa-solid fa-angle-left"></i>',
+  'next_text' => '<i class="fa-solid fa-angle-right"></i>',
   'mid_size'  => 1,
   'end_size'  => 1,
 ));
@@ -26,9 +26,9 @@ $pagination_links = paginate_links(array(
 // 1ページしかない場合も表示
 if ($max_pages <= 1) {
   $pagination_links = array(
-    '<span class="page-numbers" aria-label="前のページ">&lt;</span>',
+    '<span class="page-numbers" aria-label="前のページ"><i class="fa-solid fa-angle-left"></i></span>',
     '<span aria-current="page" class="page-numbers current">1</span>',
-    '<span class="page-numbers" aria-label="次のページ">&gt;</span>'
+    '<span class="page-numbers" aria-label="次のページ"><i class="fa-solid fa-angle-right"></i></span>'
   );
 }
 ?>

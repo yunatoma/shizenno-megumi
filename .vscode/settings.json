@@ -7,5 +7,20 @@
       "savePath": "/assets/css" //出力先フォルダ（scssから見た相対パス）
     }
   ],
-  "liveSassCompile.settings.generateMap": false //.css.map（ソースマップ）ファイルを生成するかどうか。(開発中はtrue推奨)
+  "liveSassCompile.settings.generateMap": false, //.css.map（ソースマップ）ファイルを生成するかどうか。(開発中はtrue推奨)
+
+  // 保存時にフォーマット
+  "editor.formatOnSave": true,
+
+  // SCSSファイルの設定
+  "[scss]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // Prettierの設定
+  "prettier.tabWidth": 2,
+  "prettier.useTabs": false,
+  "prettier.singleQuote": false,
+  "prettier.semi": true
 }

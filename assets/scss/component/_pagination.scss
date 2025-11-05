@@ -1,7 +1,35 @@
+@use "../global/var" as *;
+
 .pagination {
   ul {
     display: flex;
-    margin: 20px auto;
-    width: 50px;
+    margin: 50px auto 0;
+    justify-content: center;
+    gap: 10px;
+
+    li{
+        font-size: 14px;
+        width: 50px;
+        height: 50px;
+        background: #F0F0F0;
+        box-shadow: 0px 3px 6px #00000029;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #F0F3F5;
+    }
+  }
+
+  // すべての要素の色を統一
+  a,
+  span,
+  .page-numbers {
+    color: $primary !important;
+  }
+
+  // アイコンも同じ色に
+  i {
+    color: $primary !important;
   }
 }
