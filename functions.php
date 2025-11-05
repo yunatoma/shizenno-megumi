@@ -139,6 +139,167 @@ function add_livereload_script() {
 }
 add_action('wp_footer', 'add_livereload_script');
 
+
+/**
+ * お知らせ投稿を複製する機能
+ */
+function duplicate_news_post() {
+    // nonceチェック
+    if (!isset($_GET['duplicate_nonce']) || !wp_verify_nonce($_GET['duplicate_nonce'], 'duplicate_news_' . $_GET['post'])) {
+        wp_die('セキュリティチェックに失敗しました。');
+    }
+
+    // 権限チェック
+    if (!current_user_can('edit_posts')) {
+        wp_die('この操作を実行する権限がありません。');
+    }
+
+    // 投稿IDを取得
+    $post_id = isset($_GET['post']) ? absint($_GET['post']) : 0;
+    $post = get_post($post_id);
+
+    if (!$post) {
+        wp_die('投稿が見つかりませんでした。');
+    }
+
+    // 新しい投稿データを作成
+    $new_post = array(
+        'post_title'   => $post->post_title . ' (コピー)',
+        'post_content' => $post->post_content,
+        'post_excerpt' => $post->post_excerpt,
+        'post_status'  => 'draft', // 下書きとして作成
+        'post_type'    => $post->post_type,
+        'post_author'  => get_current_user_id(),
+    );
+
+    // 新しい投稿を作成
+    $new_post_id = wp_insert_post($new_post);
+
+    if (is_wp_error($new_post_id)) {
+        wp_die('投稿の複製に失敗しました。');
+    }
+
+    // タクソノミー（カテゴリなど）をコピー
+    $taxonomies = get_object_taxonomies($post->post_type);
+    foreach ($taxonomies as $taxonomy) {
+        $terms = wp_get_object_terms($post_id, $taxonomy, array('fields' => 'slugs'));
+        wp_set_object_terms($new_post_id, $terms, $taxonomy);
+    }
+
+    // アイキャッチ画像をコピー
+    $thumbnail_id = get_post_thumbnail_id($post_id);
+    if ($thumbnail_id) {
+        set_post_thumbnail($new_post_id, $thumbnail_id);
+    }
+
+    // カスタムフィールドをコピー
+    $post_meta = get_post_meta($post_id);
+    foreach ($post_meta as $key => $values) {
+        // WordPressの内部メタデータはスキップ
+        if (substr($key, 0, 1) === '_') {
+            continue;
+        }
+        foreach ($values as $value) {
+            add_post_meta($new_post_id, $key, maybe_unserialize($value));
+        }
+    }
+
+    // 編集画面にリダイレクト
+    wp_redirect(admin_url('post.php?action=edit&post=' . $new_post_id));
+    exit;
+}
+add_action('admin_action_duplicate_news_post', 'duplicate_news_post');
+
+// 管理画面の投稿一覧に「複製」リンクを追加
+function add_duplicate_link($actions, $post) {
+    if ($post->post_type === 'news' && current_user_can('edit_posts')) {
+        $nonce = wp_create_nonce('duplicate_news_' . $post->ID);
+        $actions['duplicate'] = '<a href="' . admin_url('admin.php?action=duplicate_news_post&post=' . $post->ID . '&duplicate_nonce=' . $nonce) . '">複製</a>';
+    }
+    return $actions;
+}
+add_filter('post_row_actions', 'add_duplicate_link', 10, 2);
+
+// 一括操作に「複製」オプションを追加
+function add_bulk_duplicate_action($bulk_actions) {
+    $bulk_actions['duplicate'] = '複製';
+    return $bulk_actions;
+}
+add_filter('bulk_actions-edit-news', 'add_bulk_duplicate_action');
+
+// 一括操作の処理
+function handle_bulk_duplicate($redirect_to, $action, $post_ids) {
+    if ($action !== 'duplicate') {
+        return $redirect_to;
+    }
+
+    $duplicated = 0;
+    foreach ($post_ids as $post_id) {
+        $post = get_post($post_id);
+        if (!$post || $post->post_type !== 'news') {
+            continue;
+        }
+
+        // 新しい投稿データを作成
+        $new_post = array(
+            'post_title'   => $post->post_title . ' (コピー)',
+            'post_content' => $post->post_content,
+            'post_excerpt' => $post->post_excerpt,
+            'post_status'  => 'draft',
+            'post_type'    => $post->post_type,
+            'post_author'  => get_current_user_id(),
+        );
+
+        $new_post_id = wp_insert_post($new_post);
+
+        if (is_wp_error($new_post_id)) {
+            continue;
+        }
+
+        // タクソノミーをコピー
+        $taxonomies = get_object_taxonomies($post->post_type);
+        foreach ($taxonomies as $taxonomy) {
+            $terms = wp_get_object_terms($post_id, $taxonomy, array('fields' => 'slugs'));
+            wp_set_object_terms($new_post_id, $terms, $taxonomy);
+        }
+
+        // アイキャッチ画像をコピー
+        $thumbnail_id = get_post_thumbnail_id($post_id);
+        if ($thumbnail_id) {
+            set_post_thumbnail($new_post_id, $thumbnail_id);
+        }
+
+        // カスタムフィールドをコピー
+        $post_meta = get_post_meta($post_id);
+        foreach ($post_meta as $key => $values) {
+            if (substr($key, 0, 1) === '_') {
+                continue;
+            }
+            foreach ($values as $value) {
+                add_post_meta($new_post_id, $key, maybe_unserialize($value));
+            }
+        }
+
+        $duplicated++;
+    }
+
+    $redirect_to = add_query_arg('bulk_duplicated', $duplicated, $redirect_to);
+    return $redirect_to;
+}
+add_filter('handle_bulk_actions-edit-news', 'handle_bulk_duplicate', 10, 3);
+
+// 一括操作完了時のメッセージ表示
+function bulk_duplicate_admin_notice() {
+    if (!empty($_REQUEST['bulk_duplicated'])) {
+        $duplicated = intval($_REQUEST['bulk_duplicated']);
+        printf(
+            '<div id="message" class="updated notice is-dismissible"><p>%d件の投稿を複製しました。</p></div>',
+            $duplicated
+        );
+    }
+}
+add_action('admin_notices', 'bulk_duplicate_admin_notice');
+
 // Contact Form 7のカスタマイズ
 // CF7のデフォルトCSSを無効化（テーマのCSSを使用するため）
 add_filter('wpcf7_load_css', '__return_false');
