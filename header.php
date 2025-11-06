@@ -66,11 +66,20 @@
         $ogp_image = get_custom_meta('contact', 'ogp_image') ?: get_template_directory_uri() . '/assets/img/ogp-contact.jpg';
     } elseif (is_singular('news')) {
         // お知らせ個別ページ
-        $page_title = get_the_title() . ' - 自然の恵み農園';
-        $page_description = get_the_excerpt() ?: '自然の恵み農園のお知らせです。';
-        $ogp_title = get_the_title();
-        $ogp_description = $page_description;
-        $ogp_image = has_post_thumbnail() ? get_the_post_thumbnail_url(get_the_ID(), 'large') : get_template_directory_uri() . '/assets/img/ogp-news.jpg';
+        $post_id = get_the_ID();
+
+        // カスタムメタボックスの値を取得（空の場合はデフォルト値を使用）
+        $custom_meta_title = get_post_meta($post_id, '_news_meta_title', true);
+        $custom_meta_description = get_post_meta($post_id, '_news_meta_description', true);
+        $custom_ogp_title = get_post_meta($post_id, '_news_ogp_title', true);
+        $custom_ogp_description = get_post_meta($post_id, '_news_ogp_description', true);
+        $custom_ogp_image = get_post_meta($post_id, '_news_ogp_image', true);
+
+        $page_title = $custom_meta_title ?: (get_the_title() . ' - 自然の恵み農園');
+        $page_description = $custom_meta_description ?: (get_the_excerpt() ?: '自然の恵み農園のお知らせです。');
+        $ogp_title = $custom_ogp_title ?: get_the_title();
+        $ogp_description = $custom_ogp_description ?: $page_description;
+        $ogp_image = $custom_ogp_image ?: (has_post_thumbnail() ? get_the_post_thumbnail_url($post_id, 'large') : get_template_directory_uri() . '/assets/img/ogp-news.jpg');
     } else {
         // その他のページ（デフォルト）
         $page_title = wp_get_document_title();

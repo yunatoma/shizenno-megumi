@@ -313,3 +313,187 @@ function custom_wpcf7_form_class($class) {
     $class .= ' contact__form';
     return $class;
 }
+
+/**
+ * ニュース投稿にカスタムメタボックスを追加（メタ情報・OGP設定）
+ */
+function add_news_meta_box() {
+    add_meta_box(
+        'news_meta_settings',
+        'メタ情報・OGP設定',
+        'render_news_meta_box',
+        'news',
+        'normal',
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'add_news_meta_box');
+
+// メタボックスの表示
+function render_news_meta_box($post) {
+    wp_nonce_field('save_news_meta', 'news_meta_nonce');
+
+    // 現在の値を取得
+    $meta_title = get_post_meta($post->ID, '_news_meta_title', true);
+    $meta_description = get_post_meta($post->ID, '_news_meta_description', true);
+    $ogp_title = get_post_meta($post->ID, '_news_ogp_title', true);
+    $ogp_description = get_post_meta($post->ID, '_news_ogp_description', true);
+    $ogp_image = get_post_meta($post->ID, '_news_ogp_image', true);
+    ?>
+
+    <style>
+        .news-meta-field {
+            margin-bottom: 20px;
+        }
+        .news-meta-field label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .news-meta-field input[type="text"],
+        .news-meta-field textarea {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+        }
+        .news-meta-field textarea {
+            height: 80px;
+        }
+        .news-meta-field small {
+            display: block;
+            color: #666;
+            margin-top: 5px;
+        }
+        .news-meta-image-upload {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 5px;
+        }
+        .news-meta-image-preview {
+            max-width: 200px;
+            max-height: 100px;
+            border: 1px solid #ddd;
+            padding: 5px;
+            display: none;
+        }
+        .news-meta-image-preview.active {
+            display: block;
+        }
+    </style>
+
+    <div class="news-meta-field">
+        <label for="news_meta_title">ページタイトル (title)</label>
+        <input type="text" id="news_meta_title" name="news_meta_title" value="<?php echo esc_attr($meta_title); ?>">
+        <small>空欄の場合は「記事タイトル - 自然の恵み農園」が使用されます</small>
+    </div>
+
+    <div class="news-meta-field">
+        <label for="news_meta_description">ディスクリプション (description)</label>
+        <textarea id="news_meta_description" name="news_meta_description"><?php echo esc_textarea($meta_description); ?></textarea>
+        <small>空欄の場合は抜粋が使用されます</small>
+    </div>
+
+    <div class="news-meta-field">
+        <label for="news_ogp_title">OGPタイトル (og:title)</label>
+        <input type="text" id="news_ogp_title" name="news_ogp_title" value="<?php echo esc_attr($ogp_title); ?>">
+        <small>空欄の場合は記事タイトルが使用されます</small>
+    </div>
+
+    <div class="news-meta-field">
+        <label for="news_ogp_description">OGPディスクリプション (og:description)</label>
+        <textarea id="news_ogp_description" name="news_ogp_description"><?php echo esc_textarea($ogp_description); ?></textarea>
+        <small>空欄の場合はディスクリプションが使用されます</small>
+    </div>
+
+    <div class="news-meta-field">
+        <label for="news_ogp_image">OGP画像 (og:image)</label>
+        <div class="news-meta-image-upload">
+            <input type="text" id="news_ogp_image" name="news_ogp_image" value="<?php echo esc_url($ogp_image); ?>" placeholder="画像のURLを入力">
+            <button type="button" class="button news-upload-image-button">画像を選択</button>
+        </div>
+        <img src="<?php echo esc_url($ogp_image); ?>" class="news-meta-image-preview <?php echo $ogp_image ? 'active' : ''; ?>" id="news_ogp_image_preview">
+        <small>推奨サイズ: 1200px × 630px（空欄の場合はアイキャッチ画像が使用されます）</small>
+    </div>
+
+    <script>
+    jQuery(document).ready(function($) {
+        // メディアアップローダー
+        $('.news-upload-image-button').click(function(e) {
+            e.preventDefault();
+
+            var mediaUploader = wp.media({
+                title: '画像を選択',
+                button: {
+                    text: 'この画像を使用'
+                },
+                multiple: false
+            });
+
+            mediaUploader.on('select', function() {
+                var attachment = mediaUploader.state().get('selection').first().toJSON();
+                $('#news_ogp_image').val(attachment.url);
+                $('#news_ogp_image_preview').attr('src', attachment.url).addClass('active');
+            });
+
+            mediaUploader.open();
+        });
+
+        // 画像URLが変更されたらプレビューを更新
+        $('#news_ogp_image').on('input', function() {
+            var url = $(this).val();
+            if (url) {
+                $('#news_ogp_image_preview').attr('src', url).addClass('active');
+            } else {
+                $('#news_ogp_image_preview').removeClass('active');
+            }
+        });
+    });
+    </script>
+    <?php
+}
+
+// メタボックスの保存
+function save_news_meta_box($post_id) {
+    // nonceチェック
+    if (!isset($_POST['news_meta_nonce']) || !wp_verify_nonce($_POST['news_meta_nonce'], 'save_news_meta')) {
+        return;
+    }
+
+    // 自動保存の場合は何もしない
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+
+    // 権限チェック
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+
+    // メタデータを保存
+    $fields = array(
+        'news_meta_title',
+        'news_meta_description',
+        'news_ogp_title',
+        'news_ogp_description',
+        'news_ogp_image'
+    );
+
+    foreach ($fields as $field) {
+        if (isset($_POST[$field])) {
+            $value = $_POST[$field];
+
+            // サニタイゼーション
+            if ($field === 'news_ogp_image') {
+                $value = esc_url_raw($value);
+            } elseif (strpos($field, 'description') !== false) {
+                $value = sanitize_textarea_field($value);
+            } else {
+                $value = sanitize_text_field($value);
+            }
+
+            update_post_meta($post_id, '_' . $field, $value);
+        }
+    }
+}
+add_action('save_post_news', 'save_news_meta_box');
