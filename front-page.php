@@ -327,24 +327,44 @@
 
       <section id="access">
         <h2 class="access__title title">アクセス</h2>
-        <div class="access__content">
+        <dl class="access__content">
           <div class="access__left">
-            <dt>会社名</dt>
-            <dt>所在地</dt>
-            <dt>電話番号</dt>
-            <dt>営業時間</dt>
-            <dt>Googleマップ</dt>
-            <dt>拡大地図を表示</dt>
+            <div class="access__item">
+              <dt>会社名</dt>
+            </div>
+            <div class="access__item">
+              <dt>所在地</dt>
+            </div>
+            <div class="access__item">
+              <dt>電話番号</dt>
+            </div>
+            <div class="access__item">
+              <dt>営業時間</dt>
+            </div>
+            <div class="access__item">
+              <dt>Googleマップ</dt>
+            </div>
+            <div class="access__item">
+              <dt>拡大地図を表示</dt>
+            </div>
           </div>
           <div class="access__right-top">
-            <dd>株式会社自然の恵み農園</dd>
-            <dd>
-              〒123-4567 <br class="sp-only" />千葉県〇〇市××町<br
-                class="sp-only"
-              />1丁目23-45
-            </dd>
-            <dd>012-3456-7890</dd>
-            <dd>10:00〜18:00<br class="sp-only" />（土日祝を除く）</dd>
+            <div class="access__item">
+              <dd>株式会社自然の恵み農園</dd>
+            </div>
+            <div class="access__item">
+              <dd>
+                〒123-4567 <br class="sp-only" />千葉県〇〇市××町<br
+                  class="sp-only"
+                />1丁目23-45
+              </dd>
+            </div>
+            <div class="access__item">
+              <dd>012-3456-7890</dd>
+            </div>
+            <div class="access__item">
+              <dd>10:00〜18:00<br class="sp-only" />（土日祝を除く）</dd>
+            </div>
           </div>
           <div class="access__right-bottom">
             <iframe
@@ -356,7 +376,7 @@
               referrerpolicy="no-referrer-when-downgrade"
             ></iframe>
           </div>
-        </div>
+        </dl>
       </section>
 
       <section id="top-contact">
