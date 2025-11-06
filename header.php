@@ -22,11 +22,80 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/style.css" />
-    <title>自然の恵み農園 | 自然の恵みを感じ、豊かな未来をつくる</title>
-    <meta
-      name="description"
-      content="自然の恵み農園は、農園運営・牧場運営・オンライン販売を通じ、自然の恵みを感じて、豊かな未来を想像して頂ける取り組みを行なっています。"
-    />
+
+    <?php
+    // ページごとのメタ情報を設定
+    $page_title = '';
+    $page_description = '';
+    $ogp_title = '';
+    $ogp_description = '';
+    $ogp_image = '';
+    $current_url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
+    if (is_front_page()) {
+        // トップページ
+        $page_title = get_custom_meta('home', 'title') ?: '自然の恵み農園 | 自然の恵みを感じ、豊かな未来をつくる';
+        $page_description = get_custom_meta('home', 'description') ?: '自然の恵み農園は、農園運営・牧場運営・オンライン販売を通じ、自然の恵みを感じて、豊かな未来を想像して頂ける取り組みを行なっています。';
+        $ogp_title = get_custom_meta('home', 'ogp_title') ?: $page_title;
+        $ogp_description = get_custom_meta('home', 'ogp_description') ?: $page_description;
+        $ogp_image = get_custom_meta('home', 'ogp_image') ?: get_template_directory_uri() . '/assets/img/ogp-default.jpg';
+    } elseif (is_post_type_archive('news') || is_tax('news_category')) {
+        // お知らせ一覧またはカテゴリーページ
+        if (is_tax('news_category')) {
+            $term = get_queried_object();
+            $page_title = esc_html($term->name) . ' - お知らせ一覧 | 自然の恵み農園';
+            $page_description = esc_html($term->name) . 'に関するお知らせ一覧です。';
+            $ogp_title = $page_title;
+            $ogp_description = $page_description;
+        } else {
+            $page_title = get_custom_meta('news', 'title') ?: 'お知らせ一覧 | 自然の恵み農園';
+            $page_description = get_custom_meta('news', 'description') ?: '季節の農作物のお知らせ、見学ツアーのご案内、オンライン販売セールのお知らせなど、自然の恵み農園の最新情報をお届けします。';
+            $ogp_title = get_custom_meta('news', 'ogp_title') ?: $page_title;
+            $ogp_description = get_custom_meta('news', 'ogp_description') ?: $page_description;
+        }
+        $ogp_image = get_custom_meta('news', 'ogp_image') ?: get_template_directory_uri() . '/assets/img/ogp-news.jpg';
+    } elseif (is_page('contact')) {
+        // お問い合わせページ
+        $page_title = get_custom_meta('contact', 'title') ?: 'お問い合わせ | 自然の恵み農園';
+        $page_description = get_custom_meta('contact', 'description') ?: '自然の恵み農園への、お仕事のご相談、農園体験、牧場の見学、その他ご質問など、お気軽にお問い合わせください。';
+        $ogp_title = get_custom_meta('contact', 'ogp_title') ?: $page_title;
+        $ogp_description = get_custom_meta('contact', 'ogp_description') ?: $page_description;
+        $ogp_image = get_custom_meta('contact', 'ogp_image') ?: get_template_directory_uri() . '/assets/img/ogp-contact.jpg';
+    } elseif (is_singular('news')) {
+        // お知らせ個別ページ
+        $page_title = get_the_title() . ' - 自然の恵み農園';
+        $page_description = get_the_excerpt() ?: '自然の恵み農園のお知らせです。';
+        $ogp_title = get_the_title();
+        $ogp_description = $page_description;
+        $ogp_image = has_post_thumbnail() ? get_the_post_thumbnail_url(get_the_ID(), 'large') : get_template_directory_uri() . '/assets/img/ogp-news.jpg';
+    } else {
+        // その他のページ（デフォルト）
+        $page_title = wp_get_document_title();
+        $page_description = get_bloginfo('description');
+        $ogp_title = $page_title;
+        $ogp_description = $page_description;
+        $ogp_image = get_template_directory_uri() . '/assets/img/ogp-default.jpg';
+    }
+    ?>
+
+    <title><?php echo esc_html($page_title); ?></title>
+    <meta name="description" content="<?php echo esc_attr($page_description); ?>" />
+
+    <!-- OGP設定 -->
+    <meta property="og:title" content="<?php echo esc_attr($ogp_title); ?>" />
+    <meta property="og:description" content="<?php echo esc_attr($ogp_description); ?>" />
+    <meta property="og:type" content="<?php echo is_front_page() ? 'website' : 'article'; ?>" />
+    <meta property="og:url" content="<?php echo esc_url($current_url); ?>" />
+    <meta property="og:image" content="<?php echo esc_url($ogp_image); ?>" />
+    <meta property="og:site_name" content="自然の恵み農園" />
+    <meta property="og:locale" content="ja_JP" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="<?php echo esc_attr($ogp_title); ?>" />
+    <meta name="twitter:description" content="<?php echo esc_attr($ogp_description); ?>" />
+    <meta name="twitter:image" content="<?php echo esc_url($ogp_image); ?>" />
+
     <?php wp_head(); ?>
   </head>
   <body>

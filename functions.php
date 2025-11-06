@@ -3,6 +3,9 @@
  * 自然の恵み農園 Theme Functions
  */
 
+// メタ情報管理機能を読み込み
+require_once get_template_directory() . '/meta-data.php';
+
 // カスタム投稿タイプ「お知らせ」を登録
 function create_news_post_type() {
     register_post_type('news',
