@@ -75,9 +75,9 @@
                         ?>
                           <div class="news-list__label"><?php echo esc_html($term->name); ?></div>
                         <?php endif; ?>
-                        <h2 class="news-list__title">
+                        <h3 class="news-list__title">
                           <?php the_title(); ?>
-                        </h2>
+                        </h3>
                         <p class="news-list__body">
                           <?php echo get_the_excerpt(); ?>
                         </p>
@@ -115,9 +115,9 @@
                         <time class="news-list__time--sp" datetime="<?php echo get_the_date('Y-m-d'); ?>">
                           <?php echo get_the_date('Y.m.d'); ?>
                         </time>
-                        <h2 class="news-list__title--sp">
+                        <h3 class="news-list__title--sp">
                           <?php the_title(); ?>
-                        </h2>
+                        </h3>
                       </div>
                     </a>
                   </li>
