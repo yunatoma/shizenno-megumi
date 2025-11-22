@@ -37,7 +37,7 @@
             </p>
             <div class="contact-thanks__submit">
               <a href="<?php echo home_url('/'); ?>" class="btn-green contact-thanks__submit-button">
-                TOPに戻る
+                <span class="uppercase">Top</span>に戻る
               </a>
             </div>
           </div>

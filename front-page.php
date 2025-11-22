@@ -345,7 +345,11 @@
               <dt>Googleマップ</dt>
             </div>
             <div class="access__item">
-              <dt>拡大地図を表示</dt>
+              <dt>
+                <a href="https://www.google.com/maps/place/%E3%81%B5%E3%81%AA%E3%81%B0%E3%81%97%E3%82%A2%E3%83%B3%E3%83%87%E3%83%AB%E3%82%BB%E3%83%B3%E5%85%AC%E5%9C%92/@35.760458,140.0615382,17z" target="_blank" rel="noopener noreferrer">
+                  拡大地図を表示
+                </a>
+              </dt>
             </div>
           </div>
           <div class="access__right-top">

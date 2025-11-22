@@ -1,7 +1,7 @@
 @use "../global" as *;
 
 .title {
-  font-size: clamp(1.875rem, 2.8vw, 2.5rem);
+  font-size: clamp(1.875rem, 2.5rem, 2.5rem);
   letter-spacing: 0.08em;
   color: $text-color;
   position: relative;

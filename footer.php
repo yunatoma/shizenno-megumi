@@ -9,8 +9,8 @@
               〒123-4567<br />
               千葉県〇〇市××町1丁目23-45
             </p>
-            <p class="footer__tel">TEL:123-4567-8910</p>
-            <p class="footer__fax">FAX:12-345-6789</p>
+            <p class="footer__tel"><span class="uppercase">Tel</span>:123-4567-8910</p>
+            <p class="footer__fax"><span class="uppercase">Fax</span>:12-345-6789</p>
           </address>
         </div>
         <div class="footer__right">
